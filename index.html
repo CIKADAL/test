@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADILY FLAVOR - مجموعة الوصفات</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ADILY FLAVOR - Recipe Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -16,831 +15,1161 @@
             --amazon-yellow: #FEBD69;
             --amazon-green: #007600;
         }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #EAEDED;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
+        
         .heading {
             font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
-        .recipe-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .recipe-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .modal {
-            transition: opacity 0.3s ease;
-        }
-        .admin-panel {
-            height: 80vh;
-            overflow-y: auto;
-        }
-        .amazon-button {
-            background-color: var(--amazon-yellow);
-            border-color: #c89411 #b0820f #99710d;
-            box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
-            color: #111;
-        }
-        .amazon-button:hover {
-            background-color: #f3a847;
-        }
-        .amazon-primary-button {
-            background-color: var(--amazon-orange);
-            border-color: #c45500;
-            box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
-            color: #111;
-        }
-        .amazon-primary-button:hover {
-            background-color: #fa8900;
-        }
-        .recipe-image {
+        
+        .container {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .hero-image {
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-        .category-tab {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .category-tab.active {
-            background-color: var(--amazon-orange);
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
             color: white;
-            border-color: var(--amazon-orange);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--amazon-orange);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: var(--amazon-yellow);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amazon-yellow);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .admin-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            color: var(--amazon-yellow);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            background: var(--amazon-orange);
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+        }
+        
+        .btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover i {
+            transform: translateX(4px);
+        }
+        
+        /* Ads */
         .ad-container {
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
             border: 1px dashed #ccc;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            margin: 20px 0;
         }
+        
         .ad-label {
             position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: rgba(0,0,0,0.5);
+            top: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.6);
             color: white;
             font-size: 10px;
-            padding: 2px 5px;
-            border-radius: 3px;
+            padding: 3px 8px;
+            border-radius: 20px;
         }
-        /* Mobile menu styles */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
+        
+        .ad-content {
+            text-align: center;
+            padding: 20px;
         }
-        .mobile-menu.open {
-            transform: translateX(0);
+        
+        .ad-content p {
+            color: #666;
+            font-weight: 500;
         }
-        /* Category tabs scrolling */
+        
+        /* Categories */
+        .categories {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--amazon-dark-blue);
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
         .tabs-container {
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
+        
         .tabs-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Edge */
+            height: 6px;
         }
-        /* Sticky ad on mobile */
-        .sticky-mobile-ad {
-            position: sticky;
-            bottom: 0;
-            z-index: 40;
+        
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--amazon-orange);
+            border-radius: 10px;
         }
-        .image-placeholder {
+        
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            padding: 5px;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--amazon-light-blue);
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 15px;
+        }
+        
+        .category-tab:hover, .category-tab.active {
+            background: var(--amazon-orange);
+            color: white;
+            border-color: var(--amazon-orange);
+        }
+        
+        /* Recipe Cards */
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 100%;
             display: flex;
             flex-direction: column;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .recipe-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .recipe-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .recipe-card:hover .recipe-img img {
+            transform: scale(1.05);
+        }
+        
+        .recipe-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--amazon-yellow);
+            color: var(--amazon-dark-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .recipe-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .recipe-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--amazon-dark-blue);
+        }
+        
+        .recipe-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .meta-icon {
+            color: var(--amazon-orange);
+        }
+        
+        .view-recipe {
+            background: var(--amazon-yellow);
+            color: #111;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-recipe:hover {
+            background: #e6aa45;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--amazon-orange);
+        }
+        
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            color: #777;
-            background-color: #f8f8f8;
-            padding: 10px;
-            text-align: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
         }
-        .image-placeholder i {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        
+        .social-links a:hover {
+            background: var(--amazon-orange);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--amazon-yellow);
+            transform: translateX(5px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            font-size: 15px;
+        }
+        
+        .newsletter-form button {
+            background: var(--amazon-orange);
+            color: #111;
+            border: none;
+            padding: 0 20px;
+            font-weight: 500;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #e68a00;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Recipe Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .close-modal:hover {
+            background: var(--amazon-orange);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 40px;
+        }
+        
+        .modal-header {
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h3 {
+            font-size: 32px;
+            color: var(--amazon-dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .modal-category {
+            display: inline-block;
+            background: var(--amazon-yellow);
+            color: var(--amazon-dark-blue);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .modal-description {
+            color: #555;
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .modal-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .modal-meta div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .modal-meta i {
+            color: var(--amazon-orange);
+            font-size: 20px;
+        }
+        
+        .modal-section {
+            margin-bottom: 30px;
+        }
+        
+        .modal-section h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--amazon-dark-blue);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .modal-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--amazon-orange);
+        }
+        
+        .ingredients-list, .instructions-list {
+            padding-left: 20px;
+        }
+        
+        .ingredients-list li, .instructions-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .ingredients-list li::before, .instructions-list li::before {
+            content: '•';
+            color: var(--amazon-orange);
+            position: absolute;
+            left: -15px;
+            font-size: 20px;
+        }
+        
+        .instructions-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+        }
+        
+        .instructions-list li {
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 350px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .modal-body {
+                padding: 30px 20px;
+            }
+            
+            .modal-header h3 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                padding: 12px 0;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .recipes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="bg-[#232F3E] text-white shadow-lg">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <button id="mobileMenuBtn" class="ml-2 md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 ml-2 text-[#FF9900]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                <h1 class="text-xl font-bold heading">ADILY FLAVOR</h1>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h1 class="heading">ADILY FLAVOR</h1>
             </div>
-            <nav class="hidden md:block">
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="hover:text-[#FEBD69] font-medium">الرئيسية</a></li>
-                    <li><a href="#categories" class="hover:text-[#FEBD69] font-medium">التصنيفات</a></li>
-                    <li><a href="#" class="hover:text-[#FEBD69] font-medium">من نحن</a></li>
-                    <li><a href="#" class="hover:text-[#FEBD69] font-medium">اتصل بنا</a></li>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                     <li>
-                        <button id="adminBtn" class="hover:text-[#FEBD69] font-medium flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            المشرف
+                        <button class="admin-btn">
+                            <i class="fas fa-lock"></i> Admin
                         </button>
                     </li>
                 </ul>
             </nav>
-            <button id="adminBtnMobile" class="md:hidden hover:text-[#FEBD69]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="fixed inset-y-0 right-0 w-64 bg-[#232F3E] text-white z-50 shadow-lg mobile-menu">
-        <div class="p-5">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold heading">القائمة</h2>
-                <button id="closeMobileMenu">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <ul class="space-y-4">
-                <li><a href="#" class="block hover:text-[#FEBD69] font-medium py-2">الرئيسية</a></li>
-                <li><a href="#categories" class="block hover:text-[#FEBD69] font-medium py-2">التصنيفات</a></li>
-                <li><a href="#" class="block hover:text-[#FEBD69] font-medium py-2">من نحن</a></li>
-                <li><a href="#" class="block hover:text-[#FEBD69] font-medium py-2">اتصل بنا</a></li>
-            </ul>
-        </div>
-    </div>
-    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
-
     <!-- Hero Section -->
-    <section class="bg-cover bg-center h-48 hero-image" id="heroSection">
-        <div class="container mx-auto px-4 h-full flex items-center">
-            <div class="max-w-2xl text-white">
-                <h2 class="text-2xl font-bold mb-2 heading">اكتشف وصفات لذيذة</h2>
-                <p class="text-sm mb-4">استكشف مجموعة الوصفات الشهية من جميع أنحاء العالم</p>
-                <a href="#categories" class="amazon-primary-button hover:bg-[#fa8900] text-black font-bold py-2 px-4 rounded-lg transition duration-300 inline-flex items-center text-sm">
-                    تصفح التصنيفات
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 transform rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="heading">Discover Delicious Recipes</h2>
+                <p>Explore our collection of mouthwatering recipes from around the world. Cook like a pro with our easy-to-follow instructions.</p>
+                <a href="#categories" class="btn">
+                    Browse Categories <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Top Banner Ad -->
-    <div class="container mx-auto px-4 py-3">
-        <div class="ad-container h-16 rounded-lg">
-            <span class="ad-label">إعلان</span>
-            <div class="text-center">
-                <p class="text-gray-500 font-medium text-sm">إعلان البانر العلوي</p>
+    <div class="container">
+        <div class="ad-container" style="height: 100px;">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <div class="ad-content">
+                <p>Top Banner Advertisement - 970x250</p>
             </div>
         </div>
     </div>
 
     <!-- Categories Section -->
-    <section id="categories" class="py-6 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-bold mb-4 text-center heading text-[#232F3E]">تصنيفات الوصفات</h2>
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="heading">Recipe Categories</h2>
+                <p>Browse our delicious recipes by category and find your next culinary inspiration</p>
+            </div>
             
-            <!-- Category Tabs - Scrollable on mobile -->
-            <div class="tabs-container mb-4">
-                <div class="flex flex-nowrap gap-2 pb-2" id="categoryTabs">
-                    <button class="category-tab active px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="all">
-                        جميع الوصفات
-                    </button>
-                    <button class="category-tab px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="breakfast">
-                        فطور
-                    </button>
-                    <button class="category-tab px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="lunch">
-                        غداء
-                    </button>
-                    <button class="category-tab px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="dinner">
-                        عشاء
-                    </button>
-                    <button class="category-tab px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="dessert">
-                        حلويات
-                    </button>
-                    <button class="category-tab px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="appetizer">
-                        مقبلات
-                    </button>
-                    <button class="category-tab px-3 py-1 rounded-lg border-2 border-[#232F3E] font-medium whitespace-nowrap text-sm" data-category="vegetarian">
-                        نباتي
-                    </button>
+            <div class="tabs-container">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">All Recipes</button>
+                    <button class="category-tab" data-category="breakfast">Breakfast</button>
+                    <button class="category-tab" data-category="lunch">Lunch</button>
+                    <button class="category-tab" data-category="dinner">Dinner</button>
+                    <button class="category-tab" data-category="dessert">Dessert</button>
+                    <button class="category-tab" data-category="appetizer">Appetizer</button>
+                    <button class="category-tab" data-category="vegetarian">Vegetarian</button>
                 </div>
             </div>
             
-            <!-- Recipe Container -->
-            <div class="grid grid-cols-1 gap-4" id="recipeContainer">
-                <!-- Recipe cards will be dynamically inserted here -->
+            <div class="recipes-grid">
+                <!-- Recipe 1 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
+                        <div class="recipe-category">Dinner</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Classic Margherita Pizza</h3>
+                        <p>Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>20 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>15 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 2 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
+                        <div class="recipe-category">Dinner</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Spaghetti Bolognese</h3>
+                        <p>Classic Italian pasta with rich meat sauce, perfect for family dinners and special occasions.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>45 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 3 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
+                        <div class="recipe-category">Dessert</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Chocolate Chip Cookies</h3>
+                        <p>Soft and chewy cookies loaded with chocolate chips - the perfect sweet treat for any occasion.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>10 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
             </div>
             
             <!-- In-content Ad -->
-            <div class="ad-container h-20 my-5 rounded-lg">
-                <span class="ad-label">إعلان</span>
-                <div class="text-center">
-                    <p class="text-gray-500 font-medium text-sm">إعلان داخل المحتوى</p>
+            <div class="ad-container" style="height: 120px;">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <div class="ad-content">
+                    <p>In-content Advertisement - 728x90</p>
                 </div>
             </div>
             
-            <!-- Mobile Ad -->
-            <div class="ad-container h-60 rounded-lg my-5">
-                <span class="ad-label">إعلان</span>
-                <div class="text-center">
-                    <p class="text-gray-500 font-medium">إعلان للجوال</p>
-                    <p class="text-sm text-gray-400">300x250</p>
+            <div class="recipes-grid">
+                <!-- Recipe 4 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
+                        <div class="recipe-category">Breakfast</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Avocado Toast</h3>
+                        <p>Simple, nutritious breakfast with creamy avocado on toasted artisan bread with optional toppings.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>5 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>5 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 5 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
+                        <div class="recipe-category">Vegetarian</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Vegetable Stir Fry</h3>
+                        <p>Quick and healthy vegetable stir fry with a flavorful sauce, perfect for busy weeknights.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>10 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 6 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
+                        <div class="recipe-category">Breakfast</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Berry Smoothie Bowl</h3>
+                        <p>Refreshing and nutritious smoothie bowl topped with fresh fruits and crunchy granola.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>10 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>0 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Bottom Banner Ad -->
-    <div class="container mx-auto px-4 py-3 mb-6">
-        <div class="ad-container h-20 rounded-lg">
-            <span class="ad-label">إعلان</span>
-            <div class="text-center">
-                <p class="text-gray-500 font-medium text-sm">إعلان البانر السفلي</p>
+    <div class="container">
+        <div class="ad-container" style="height: 100px;">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <div class="ad-content">
+                <p>Bottom Banner Advertisement - 970x250</p>
             </div>
         </div>
     </div>
 
     <!-- Sticky Mobile Ad -->
     <div class="sticky-mobile-ad">
-        <div class="container mx-auto px-4 py-2">
-            <div class="ad-container h-14 rounded-lg">
-                <span class="ad-label">إعلان</span>
-                <div class="text-center">
-                    <p class="text-gray-500 font-medium text-sm">إعلان لاصق للجوال</p>
+        <div class="container">
+            <div class="ad-container" style="height: 70px;">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <div class="ad-content">
+                    <p>Sticky Mobile Ad - 320x50</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-[#232F3E] text-white py-6">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                    <h3 class="text-lg font-bold mb-3 heading">ADILY FLAVOR</h3>
-                    <p class="mb-3 text-sm">مشاركة متعة الطهي مع عشاق الطعام حول العالم.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-[#FEBD69]">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="hover:text-[#FEBD69]">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="hover:text-[#FEBD69]">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="heading">ADILY FLAVOR</h3>
+                    <p>Sharing the joy of cooking with food enthusiasts around the world. Discover, create, and share delicious recipes.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 heading">روابط سريعة</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-[#FEBD69]">الرئيسية</a></li>
-                        <li><a href="#categories" class="hover:text-[#FEBD69]">التصنيفات</a></li>
-                        <li><a href="#" class="hover:text-[#FEBD69]">من نحن</a></li>
-                        <li><a href="#" class="hover:text-[#FEBD69]">اتصل بنا</a></li>
-                        <li><a href="#" class="hover:text-[#FEBD69]">سياسة الخصوصية</a></li>
+                
+                <div class="footer-column">
+                    <h3 class="heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#">Popular Recipes</a></li>
+                        <li><a href="#">Cooking Tips</a></li>
+                        <li><a href="#">About Us</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="text-lg font-bold mb-3 heading">النشرة الإخبارية</h3>
-                    <p class="mb-3 text-sm">اشترك للحصول على أحدث الوصفات والتحديثات.</p>
-                    <form class="flex">
-                        <input type="email" placeholder="بريدك الإلكتروني" class="px-3 py-2 w-full rounded-l-lg focus:outline-none text-gray-800 text-sm">
-                        <button type="submit" class="amazon-button px-3 py-2 rounded-r-lg transition duration-300 text-black text-sm whitespace-nowrap">
-                            اشتراك
-                        </button>
-                    </form>
+                
+                <div class="footer-column">
+                    <h3 class="heading">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Breakfast</a></li>
+                        <li><a href="#">Lunch</a></li>
+                        <li><a href="#">Dinner</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        <li><a href="#">Vegetarian</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="heading">Newsletter</h3>
+                    <p>Subscribe to get the latest recipes and cooking tips delivered to your inbox.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-[#37475A] mt-5 pt-4 text-center text-sm">
-                <p>&copy; 2023 ADILY FLAVOR. جميع الحقوق محفوظة.</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ADILY FLAVOR. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff9900;"></i> for food lovers</p>
             </div>
         </div>
     </footer>
 
-    <!-- Admin Login Modal -->
-    <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden modal opacity-0">
-        <div class="bg-white rounded-lg p-5 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold heading text-[#232F3E]">وصول المشرف</h3>
-                <button id="closeAdminModal" class="text-gray-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <p class="mb-4 text-gray-600 text-sm">أدخل رمز PIN للوصول إلى لوحة التحكم.</p>
-            <div class="mb-4">
-                <label for="pinCode" class="block text-gray-700 mb-2 text-sm">رمز PIN:</label>
-                <input type="password" id="pinCode" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9900]">
-            </div>
-            <div class="flex justify-end">
-                <button id="submitPin" class="amazon-primary-button font-bold py-2 px-4 rounded-lg transition duration-300 text-black text-sm">
-                    إرسال
-                </button>
-            </div>
-            <p id="pinError" class="mt-3 text-red-500 hidden text-sm">رمز PIN غير صحيح. يرجى المحاولة مرة أخرى.</p>
-        </div>
-    </div>
-
     <!-- Recipe Detail Modal -->
-    <div id="recipeDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden modal opacity-0">
-        <div class="bg-white rounded-lg p-4 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-3">
-                <h3 id="modalRecipeTitle" class="text-xl font-bold heading text-[#232F3E]">تفاصيل الوصفة</h3>
-                <button id="closeRecipeDetailModal" class="text-gray-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <div class="close-modal">
+                <i class="fas fa-times"></i>
             </div>
-            <div id="modalRecipeImage" class="h-48 bg-[#F3F3F3] rounded-lg overflow-hidden mb-3">
-                <!-- Recipe image will be inserted here -->
-            </div>
-            <div>
-                <div class="mb-2">
-                    <span id="modalRecipeCategory" class="inline-block bg-[#FEBD69] text-[#232F3E] px-3 py-1 rounded-full text-xs font-medium">التصنيف</span>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h3 class="heading">Classic Margherita Pizza</h3>
+                    <span class="modal-category">Dinner</span>
                 </div>
-                <p id="modalRecipeDescription" class="text-gray-600 mb-3 text-sm"></p>
-                <div class="flex space-x-4 mb-3">
-                    <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#FF9900] ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span id="modalPrepTime" class="text-sm"></span>
+                
+                <p class="modal-description">
+                    Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust. This simple yet delicious recipe brings the taste of Italy to your kitchen.
+                </p>
+                
+                <div class="modal-meta">
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span>Prep Time: 20 minutes</span>
                     </div>
-                    <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#FF9900] ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                        </svg>
-                        <span id="modalCookTime" class="text-sm"></span>
+                    <div>
+                        <i class="fas fa-fire"></i>
+                        <span>Cook Time: 15 minutes</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-user-friends"></i>
+                        <span>Servings: 2-3 people</span>
                     </div>
                 </div>
-                <h4 class="text-base font-semibold mb-2">المكونات:</h4>
-                <ul id="modalIngredients" class="list-disc pr-5 mb-3 space-y-1 text-sm">
-                    <!-- Ingredients will be inserted here -->
-                </ul>
-            </div>
-            
-            <!-- In-modal Ad -->
-            <div class="ad-container h-16 my-3 rounded-lg">
-                <span class="ad-label">إعلان</span>
-                <div class="text-center">
-                    <p class="text-gray-500 font-medium text-sm">إعلان داخل النافذة</p>
+                
+                <div class="modal-section">
+                    <h4>Ingredients</h4>
+                    <ul class="ingredients-list">
+                        <li>1 pizza dough ball</li>
+                        <li>3 tbsp tomato sauce</li>
+                        <li>125g fresh mozzarella cheese</li>
+                        <li>Fresh basil leaves</li>
+                        <li>2 tbsp olive oil</li>
+                        <li>Salt and pepper to taste</li>
+                        <li>1 tsp dried oregano</li>
+                        <li>1 clove garlic, minced</li>
+                    </ul>
                 </div>
-            </div>
-            
-            <div class="mt-3">
-                <h4 class="text-base font-semibold mb-2">الخطوات:</h4>
-                <ol id="modalInstructions" class="list-decimal pr-5 space-y-2 text-sm">
-                    <!-- Instructions will be inserted here -->
-                </ol>
+                
+                <div class="modal-section">
+                    <h4>Instructions</h4>
+                    <ol class="instructions-list">
+                        <li>Preheat your oven to 475°F (245°C) with a pizza stone or steel if you have one.</li>
+                        <li>Roll out the pizza dough on a floured surface to your desired thickness.</li>
+                        <li>Spread tomato sauce evenly over the dough, leaving a small border for the crust.</li>
+                        <li>Tear the mozzarella into pieces and distribute evenly over the sauce.</li>
+                        <li>Sprinkle minced garlic and oregano over the cheese.</li>
+                        <li>Bake for 12-15 minutes until the crust is golden and the cheese is bubbly.</li>
+                        <li>Remove from oven, top with fresh basil leaves, drizzle with olive oil, and season with salt and pepper.</li>
+                        <li>Slice and serve immediately.</li>
+                    </ol>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Notes</h4>
+                    <p>For best results, use high-quality ingredients. Fresh mozzarella makes a significant difference. If you like a crispier crust, pre-bake the dough for 3-4 minutes before adding toppings.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Sample recipe data with reliable image URLs
-        let recipes = [
-            {
-                id: 1,
-                name: "بيتزا مارغريتا الكلاسيكية",
-                description: "بيتزا إيطالية تقليدية بسيطة ولذيذة بمكونات طازجة.",
-                prepTime: 20,
-                cookTime: 15,
-                category: "dinner",
-                ingredients: [
-                    "1 كرة عجينة بيتزا",
-                    "3 ملاعق كبيرة صلصة طماطم",
-                    "125 جبنة موزاريلا طازجة",
-                    "أوراق ريحان طازجة",
-                    "2 ملاعق كبيرة زيت زيتون",
-                    "ملح وفلفل حسب الرغبة"
-                ],
-                instructions: [
-                    "سخن الفرن على 245 درجة مئوية مع حجر بيتزا إذا كان متوفراً.",
-                    "افرد عجينة البيتزا على سطح مرشوش بالدقيق إلى السماكة المطلوبة.",
-                    "انشر صلصة الطماطم بالتساوي على العجينة مع ترك حواف صغيرة.",
-                    "وزع قطع الموزاريلا بالتساوي على الصلصة.",
-                    "اخبز لمدة 12-15 دقيقة حتى يصبح القشرة ذهبية والجبنة فقاعية.",
-                    "أخرج من الفرن، وزع أوراق الريحان، صب زيت الزيتون، وتبل بالملح والفلفل.",
-                    "قطع وقدم فوراً."
-                ],
-                image: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600"
-            },
-            {
-                id: 2,
-                name: "سباغيتي بولونيز",
-                description: "طبق معكرونة إيطالي كلاسيكي بصلصة لحم غنية.",
-                prepTime: 15,
-                cookTime: 45,
-                category: "dinner",
-                ingredients: [
-                    "400 جم سباغيتي",
-                    "500 جم لحم مفروم",
-                    "1 بصلة مفرومة ناعماً",
-                    "2 فصوص ثوم مفرومة",
-                    "2 جزر مكعبات صغيرة",
-                    "2 ساق كرفس مكعبات صغيرة",
-                    "400 جم طماطم معلبة",
-                    "2 ملاعق كبيرة معجون طماطم",
-                    "1 كوب مرق لحم",
-                    "1 ملعقة صغيرة أوريغانو مجفف",
-                    "ملح وفلفل حسب الرغبة",
-                    "جبن بارميزان للتقديم"
-                ],
-                instructions: [
-                    "سخن الزيت في مقلاة كبيرة واطهو البصل، الثوم، الجزر، والكرفس حتى يلين.",
-                    "أضف اللحم المفروم واطهو حتى يصبح بنياً.",
-                    "أضف الطماطم، معجون الطماطم، مرق اللحم، والأوريغانو.",
-                    "اتركه على نار هادئة لمدة 30 دقيقة حتى تتماسك الصلصة.",
-                    "اطهو السباغيتي حسب التعليمات على العبوة.",
-                    "صفّي المعكرونة وقدمها مع صلصة البولونيز وجبن البارميزان المبشور."
-                ],
-                image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600"
-            },
-            {
-                id: 3,
-                name: "كوكيز الشوكولاتة",
-                description: "كوكيز طرية ومضغوطة مع رقائق شوكولاتة ذائبة، مثالية لأي مناسبة.",
-                prepTime: 15,
-                cookTime: 10,
-                category: "dessert",
-                ingredients: [
-                    "1 كوب زبدة طرية",
-                    "1 كوب سكر أبيض",
-                    "1 كوب سكر بني",
-                    "2 بيضات",
-                    "2 ملعقة صغيرة فانيليا",
-                    "3 أكواب دقيق",
-                    "1 ملعقة صغيرة بيكينج صودا",
-                    "2 ملعقة صغيرة ماء ساخن",
-                    "1/2 ملعقة صغيرة ملح",
-                    "2 كوب رقائق شوكولاتة"
-                ],
-                instructions: [
-                    "سخن الفرن على 175 درجة مئوية.",
-                    "اخفق الزبدة والسكر حتى يصبح الخليط ناعماً.",
-                    "اخفق البيض واحدة تلو الأخرى ثم أضف الفانيليا.",
-                    "حل البيكينج صودا في الماء الساخن وأضفه مع الملح.",
-                    "أضف الدقيق ورقائق الشوكولاتة.",
-                    "ضع بملعقة كبيرة على صينية غير مدهونة.",
-                    "اخبز لمدة 10 دقائق أو حتى تصبح الحواف ذهبية."
-                ],
-                image: "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600"
-            },
-            {
-                id: 4,
-                name: "توست الأفوكادو",
-                description: "فطور بسيط ومغذي مع أفوكادو كريمية على خبز محمص.",
-                prepTime: 5,
-                cookTime: 5,
-                category: "breakfast",
-                ingredients: [
-                    "2 شريحة خبز كامل",
-                    "1 أفوكادو ناضج",
-                    "1/2 ليمون عصير",
-                    "ملح وفلفل حسب الرغبة",
-                    "رقائق فلفل أحمر (اختياري)",
-                    "2 بيض (اختياري)"
-                ],
-                instructions: [
-                    "حمص الخبز حتى يصبح ذهبياً ومقرمشاً.",
-                    "اقطع الأفوكادو إلى نصفين، أزل البذرة، واهرس اللب في وعب.",
-                    "أضف عصير الليمون، الملح، والفلفل إلى الأفوكادو واهرس بالشوكة.",
-                    "انشر خليط الأفوكادو على الخبز المحمص.",
-                    "إذا رغبت، أضف بيضة مسلوقة أو مقلية.",
-                    "رش رقائق الفلفل الأحمر إذا أردت بعض الحرارة."
-                ],
-                image: "https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600"
-            },
-            {
-                id: 5,
-                name: "خضروات سوتيه",
-                description: "خضروات سوتيه سريعة وصحية مع صلصة لذيذة.",
-                prepTime: 15,
-                cookTime: 10,
-                category: "vegetarian",
-                ingredients: [
-                    "2 ملعقة كبيرة زيت نباتي",
-                    "2 فصوص ثوم مفروم",
-                    "1 ملعقة كبيرة زنجبيل مفروم",
-                    "1 فلفل رومي شرائح",
-                    "1 جزر شرائح رفيعة",
-                    "1 كوب زهيرات بروكلي",
-                    "1 كوب بازلاء",
-                    "1 كوب مشروم شرائح",
-                    "3 ملاعق كبيرة صويا صوص",
-                    "1 ملعقة كبيرة زيت سمسم",
-                    "1 ملعقة كبيرة عسل أو شراب القيقب",
-                    "سمسم للتزيين",
-                    "أرز مطبوخ للتقديم"
-                ],
-                instructions: [
-                    "سخن الزيت في مقلاة أو ووك على نار عالية.",
-                    "أضف الثوم والزنجبيل وقلب لمدة 30 ثانية حتى تفوح رائحته.",
-                    "أضف الخضروات وقلب لمدة 5-7 دقائق حتى تصبح مقرمشة.",
-                    "في وعاء صغير، اخلط صوص الصويا، زيت السمسم، والعسل.",
-                    "صب الصلصة على الخضروات وقلب لتغطيتها.",
-                    "زين بالسمسم وقدم مع الأرز."
-                ],
-                image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600"
+        // Toggle recipe modal
+        const modal = document.getElementById('recipeModal');
+        const viewButtons = document.querySelectorAll('.view-recipe');
+        const closeModal = document.querySelector('.close-modal');
+        
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
             }
-        ];
-
-        // Set hero image with reliable URL
-        const heroImageUrl = "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-        document.getElementById('heroSection').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${heroImageUrl}')`;
-
-        // DOM Elements
-        const recipeContainer = document.getElementById('recipeContainer');
-        const adminBtn = document.getElementById('adminBtn');
-        const adminBtnMobile = document.getElementById('adminBtnMobile');
-        const adminModal = document.getElementById('adminModal');
-        const closeAdminModal = document.getElementById('closeAdminModal');
-        const pinCode = document.getElementById('pinCode');
-        const submitPin = document.getElementById('submitPin');
-        const pinError = document.getElementById('pinError');
-        const recipeDetailModal = document.getElementById('recipeDetailModal');
-        const closeRecipeDetailModal = document.getElementById('closeRecipeDetailModal');
-        const modalRecipeTitle = document.getElementById('modalRecipeTitle');
-        const modalRecipeImage = document.getElementById('modalRecipeImage');
-        const modalRecipeDescription = document.getElementById('modalRecipeDescription');
-        const modalRecipeCategory = document.getElementById('modalRecipeCategory');
-        const modalPrepTime = document.getElementById('modalPrepTime');
-        const modalCookTime = document.getElementById('modalCookTime');
-        const modalIngredients = document.getElementById('modalIngredients');
-        const modalInstructions = document.getElementById('modalInstructions');
+        });
+        
+        // Category tabs functionality
         const categoryTabs = document.querySelectorAll('.category-tab');
         
-        // Mobile menu elements
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const closeMobileMenu = document.getElementById('closeMobileMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-
-        // Initialize the page
-        function init() {
-            displayRecipes('all');
-            setupCategoryTabs();
-            setupMobileMenu();
-        }
-
-        // Setup mobile menu
-        function setupMobileMenu() {
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileMenu.classList.add('open');
-                mobileMenuOverlay.classList.remove('hidden');
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Here would be code to filter recipes by category
+                // For this demo, we'll just simulate the action
+                console.log(`Showing recipes for: ${tab.dataset.category}`);
             });
-            
-            closeMobileMenu.addEventListener('click', function() {
-                mobileMenu.classList.remove('open');
-                mobileMenuOverlay.classList.add('hidden');
-            });
-            
-            mobileMenuOverlay.addEventListener('click', function() {
-                mobileMenu.classList.remove('open');
-                mobileMenuOverlay.classList.add('hidden');
-            });
-            
-            // Close mobile menu when clicking on a link
-            document.querySelectorAll('#mobileMenu a').forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.remove('open');
-                    mobileMenuOverlay.classList.add('hidden');
-                });
-            });
-        }
-
-        // Setup category tabs
-        function setupCategoryTabs() {
-            categoryTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    
-                    // Update active tab
-                    categoryTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Display recipes for the selected category
-                    displayRecipes(category);
-                });
-            });
-        }
-
-        // Display recipes based on category
-        function displayRecipes(category) {
-            recipeContainer.innerHTML = '';
-            
-            let filteredRecipes;
-            if (category === 'all') {
-                filteredRecipes = recipes;
-            } else {
-                filteredRecipes = recipes.filter(recipe => recipe.category === category);
-            }
-            
-            if (filteredRecipes.length === 0) {
-                const noRecipes = document.createElement('div');
-                noRecipes.className = 'col-span-full text-center py-6 bg-gray-100 rounded-lg';
-                noRecipes.innerHTML = `
-                    <i class="fas fa-utensils text-gray-400 text-4xl mb-3"></i>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">لا توجد وصفات</h3>
-                    <p class="text-gray-500 text-sm">لا توجد وصفات في هذا التصنيف بعد.</p>
-                `;
-                recipeContainer.appendChild(noRecipes);
-                return;
-            }
-            
-            filteredRecipes.forEach(recipe => {
-                const recipeCard = createRecipeCard(recipe);
-                recipeContainer.appendChild(recipeCard);
-            });
-            
-            // Add event listeners to view recipe buttons
-            document.querySelectorAll('.view-recipe').forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    showRecipeDetail(id);
-                });
-            });
-        }
-
-        // Create a recipe card element
-        function createRecipeCard(recipe) {
-            const recipeCard = document.createElement('div');
-            recipeCard.className = 'bg-white rounded-lg overflow-hidden shadow-lg recipe-card mb-4';
-            
-            // Format category name for display
-            let categoryDisplay = recipe.category.replace('-', ' ');
-            categoryDisplay = categoryDisplay.charAt(0).toUpperCase() + categoryDisplay.slice(1);
-            
-            recipeCard.innerHTML = `
-                <div class="h-40 bg-[#F3F3F3] flex items-center justify-center overflow-hidden">
-                    <img src="${recipe.image}" alt="${recipe.name}" class="recipe-image" loading="lazy" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'image-placeholder\'><i class=\'fas fa-image text-gray-400\'></i><span>تعذر تحميل الصورة</span></div>'">
-                </div>
-                <div class="p-4">
-                    <div class="mb-2">
-                        <span class="inline-block bg-[#FEBD69] text-[#232F3E] px-2 py-1 rounded-full text-xs font-medium">${categoryDisplay}</span>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2 heading text-[#232F3E]">${recipe.name}</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-2 text-sm">${recipe.description}</p>
-                    <div class="flex justify-between items-center">
-                        <div class="flex space-x-2">
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#FF9900] ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span class="text-xs">${recipe.prepTime} د</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#FF9900] ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                                </svg>
-                                <span class="text-xs">${recipe.cookTime} د</span>
-                            </div>
-                        </div>
-                        <button class="view-recipe amazon-button hover:bg-[#f3a847] text-black px-2 py-1 rounded-lg text-xs transition duration-300" data-id="${recipe.id}">
-                            عرض الوصفة
-                        </button>
-                    </div>
-                </div>
-            `;
-            return recipeCard;
-        }
-
-        // Show recipe detail modal
-        function showRecipeDetail(id) {
-            const recipe = recipes.find(r => r.id === id);
-            if (!recipe) return;
-
-            modalRecipeTitle.textContent = recipe.name;
-            
-            // Create image with error handling
-            modalRecipeImage.innerHTML = `
-                <img src="${recipe.image}" alt="${recipe.name}" class="w-full h-full object-cover" 
-                     onerror="this.onerror=null; this.src=''; this.parentNode.innerHTML='<div class=\'image-placeholder h-full\'><i class=\'fas fa-image text-gray-400 text-4xl\'></i><span>تعذر تحميل صورة الوصفة</span></div>'">
-            `;
-            
-            modalRecipeDescription.textContent = recipe.description;
-            
-            // Format category name for display
-            let categoryDisplay = recipe.category.replace('-', ' ');
-            categoryDisplay = categoryDisplay.charAt(0).toUpperCase() + categoryDisplay.slice(1);
-            modalRecipeCategory.textContent = categoryDisplay;
-            
-            modalPrepTime.textContent = `تحضير: ${recipe.prepTime} دقيقة`;
-            modalCookTime.textContent = `طبخ: ${recipe.cookTime} دقيقة`;
-
-            modalIngredients.innerHTML = '';
-            recipe.ingredients.forEach(ingredient => {
-                const li = document.createElement('li');
-                li.textContent = ingredient;
-                modalIngredients.appendChild(li);
-            });
-
-            modalInstructions.innerHTML = '';
-            recipe.instructions.forEach(instruction => {
-                const li = document.createElement('li');
-                li.textContent = instruction;
-                modalInstructions.appendChild(li);
-            });
-
-            recipeDetailModal.classList.remove('hidden');
-            setTimeout(() => {
-                recipeDetailModal.classList.add('opacity-100');
-            }, 10);
-        }
-
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', init);
-
-        adminBtn.addEventListener('click', function() {
-            adminModal.classList.remove('hidden');
-            setTimeout(() => {
-                adminModal.classList.add('opacity-100');
-            }, 10);
         });
-
-        adminBtnMobile.addEventListener('click', function() {
-            adminModal.classList.remove('hidden');
-            setTimeout(() => {
-                adminModal.classList.add('opacity-100');
-            }, 10);
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            alert('Mobile menu would open here. In a full implementation, this would show the navigation menu.');
         });
-
-        closeAdminModal.addEventListener('click', function() {
-            adminModal.classList.remove('opacity-100');
-            setTimeout(() => {
-                adminModal.classList.add('hidden');
-            }, 300);
-            pinCode.value = '';
-            pinError.classList.add('hidden');
-        });
-
-        submitPin.addEventListener('click', function() {
-            // Simple PIN validation (1234 is the PIN)
-            if (pinCode.value === '1234') {
-                adminModal.classList.remove('opacity-100');
-                setTimeout(() => {
-                    adminModal.classList.add('hidden');
-                }, 300);
-                pinCode.value = '';
-                pinError.classList.add('hidden');
-                alert('تم الدخول إلى لوحة التحكم بنجاح!');
-            } else {
-                pinError.classList.remove('hidden');
-            }
-        });
-
-        closeRecipeDetailModal.addEventListener('click', function() {
-            recipeDetailModal.classList.remove('opacity-100');
-            setTimeout(() => {
-                recipeDetailModal.classList.add('hidden');
-            }, 300);
-        });
-
-        // Close modals when clicking outside
-        window.addEventListener('click', function(e) {
-            if (e.target === adminModal) {
-                adminModal.classList.remove('opacity-100');
-                setTimeout(() => {
-                    adminModal.classList.add('hidden');
-                }, 300);
-                pinCode.value = '';
-                pinError.classList.add('hidden');
-            }
-            
-            if (e.target === recipeDetailModal) {
-                recipeDetailModal.classList.remove('opacity-100');
-                setTimeout(() => {
-                    recipeDetailModal.classList.add('hidden');
-                }, 300);
-            }
+        
+        // Admin button functionality
+        const adminBtn = document.querySelector('.admin-btn');
+        
+        adminBtn.addEventListener('click', () => {
+            alert('Admin login modal would open here. This would allow access to recipe management.');
         });
     </script>
 </body>
