@@ -7,14 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All CSS styles from previous solution */
         :root {
             --amazon-orange: #FF9900;
             --amazon-dark-blue: #232F3E;
             --amazon-light-blue: #37475A;
-            --amazon-teal: #00A8E1;
             --amazon-yellow: #FEBD69;
-            --amazon-green: #007600;
         }
         
         * {
@@ -28,6 +25,7 @@
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
+            padding-bottom: 70px;
         }
         
         .heading {
@@ -255,6 +253,7 @@
             overflow-x: auto;
             padding-bottom: 10px;
             margin-bottom: 30px;
+            -webkit-overflow-scrolling: touch;
         }
         
         .tabs-container::-webkit-scrollbar {
@@ -666,6 +665,34 @@
             margin-bottom: 15px;
         }
         
+        /* Sticky Mobile Ad */
+        .sticky-mobile-ad {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: white;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+            padding: 10px 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .sticky-mobile-ad.active {
+            transform: translateY(0);
+        }
+        
+        .sticky-mobile-ad .container {
+            padding: 0;
+        }
+        
+        .sticky-mobile-ad .ad-container {
+            border-radius: 0;
+            margin: 0;
+            height: 70px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero {
@@ -708,6 +735,12 @@
             
             .modal-header h3 {
                 font-size: 28px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .sticky-mobile-ad {
+                display: none;
             }
         }
         
@@ -1110,71 +1143,4 @@
                 
                 <div class="modal-section">
                     <h4>Notes</h4>
-                    <p>For best results, use high-quality ingredients. Fresh mozzarella makes a significant difference. If you like a crispier crust, pre-bake the dough for 3-4 minutes before adding toppings.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Toggle recipe modal
-        const modal = document.getElementById('recipeModal');
-        const viewButtons = document.querySelectorAll('.view-recipe');
-        const closeModal = document.querySelector('.close-modal');
-        
-        viewButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        closeModal.addEventListener('click', () => {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Category tabs functionality
-        const categoryTabs = document.querySelectorAll('.category-tab');
-        
-        categoryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                categoryTabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Here would be code to filter recipes by category
-                // For this demo, we'll just simulate the action
-                console.log(`Showing recipes for: ${tab.dataset.category}`);
-            });
-        });
-        
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            alert('Mobile menu would open here. In a full implementation, this would show the navigation menu.');
-        });
-        
-        // Admin button functionality
-        const adminBtn = document.querySelector('.admin-btn');
-        
-        adminBtn.addEventListener('click', () => {
-            alert('Admin login modal would open here. This would allow access to recipe management.');
-        });
-    </script>
-
-    <!-- Added the requested script -->
-    <script type='text/javascript' src='//pl26920862.profitableratecpm.com/cb/a8/40/cba840d68e70db1debf5d3f4636121d5.js'></script>
-</body>
-</html>
+                   
