@@ -3,35 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADILY FLAVOR - Recipe Collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>FlavorFusion - Recipe Collection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --amazon-orange: #FF9900;
-            --amazon-dark-blue: #232F3E;
-            --amazon-light-blue: #37475A;
-            --amazon-teal: #00A8E1;
-            --amazon-yellow: #FEBD69;
-            --amazon-green: #007600;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #ff6b35;
+            --secondary: #2a9d8f;
+            --dark: #264653;
+            --light: #f8f9fa;
+            --accent: #e76f51;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f5f7f9;
             color: #333;
             line-height: 1.6;
-        }
-        
-        .heading {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
         }
         
         .container {
@@ -43,7 +36,7 @@
         
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2533 100%);
             color: white;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
@@ -65,7 +58,7 @@
         }
         
         .logo-icon {
-            color: var(--amazon-orange);
+            color: var(--primary);
             font-size: 28px;
         }
         
@@ -90,7 +83,7 @@
         }
         
         nav a:hover {
-            color: var(--amazon-yellow);
+            color: var(--primary);
         }
         
         nav a::after {
@@ -100,7 +93,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--amazon-yellow);
+            background: var(--primary);
             transition: width 0.3s ease;
         }
         
@@ -121,7 +114,7 @@
         }
         
         .admin-btn:hover {
-            color: var(--amazon-yellow);
+            color: var(--primary);
         }
         
         .mobile-menu-btn {
@@ -136,10 +129,10 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+                        url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            height: 450px;
+            height: 500px;
             display: flex;
             align-items: center;
             color: white;
@@ -147,18 +140,22 @@
         
         .hero-content {
             max-width: 600px;
+            text-align: center;
+            margin: 0 auto;
         }
         
         .hero h2 {
-            font-size: 42px;
+            font-size: 48px;
             margin-bottom: 15px;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 30px;
             max-width: 500px;
+            margin: 0 auto 30px;
         }
         
         .btn {
@@ -166,22 +163,22 @@
             align-items: center;
             justify-content: center;
             padding: 12px 30px;
-            background: var(--amazon-orange);
-            color: #111;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
             font-weight: 600;
             border-radius: 8px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
             border: none;
             cursor: pointer;
             font-size: 16px;
         }
         
         .btn:hover {
-            background: #e68a00;
+            background: #e55a2d;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
         
         .btn i {
@@ -224,9 +221,9 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
         }
         
         .ad-content p {
@@ -236,7 +233,7 @@
         
         /* Categories */
         .categories {
-            padding: 50px 0;
+            padding: 60px 0 30px;
             background: white;
         }
         
@@ -247,7 +244,7 @@
         
         .section-title h2 {
             font-size: 36px;
-            color: var(--amazon-dark-blue);
+            color: var(--dark);
             margin-bottom: 10px;
         }
         
@@ -255,6 +252,7 @@
             color: #666;
             max-width: 600px;
             margin: 0 auto;
+            font-size: 18px;
         }
         
         .tabs-container {
@@ -268,7 +266,7 @@
         }
         
         .tabs-container::-webkit-scrollbar-thumb {
-            background: var(--amazon-orange);
+            background: var(--primary);
             border-radius: 10px;
         }
         
@@ -276,24 +274,26 @@
             display: flex;
             gap: 12px;
             padding: 5px;
+            justify-content: center;
         }
         
         .category-tab {
             padding: 10px 20px;
             background: white;
-            border: 2px solid var(--amazon-light-blue);
+            border: 2px solid var(--secondary);
             border-radius: 30px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
             font-size: 15px;
+            color: var(--dark);
         }
         
         .category-tab:hover, .category-tab.active {
-            background: var(--amazon-orange);
+            background: var(--secondary);
             color: white;
-            border-color: var(--amazon-orange);
+            border-color: var(--secondary);
         }
         
         /* Recipe Cards */
@@ -342,8 +342,8 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: var(--amazon-yellow);
-            color: var(--amazon-dark-blue);
+            background: var(--primary);
+            color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 13px;
@@ -358,9 +358,9 @@
         }
         
         .recipe-content h3 {
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 10px;
-            color: var(--amazon-dark-blue);
+            color: var(--dark);
         }
         
         .recipe-content p {
@@ -385,12 +385,12 @@
         }
         
         .meta-icon {
-            color: var(--amazon-orange);
+            color: var(--primary);
         }
         
         .view-recipe {
-            background: var(--amazon-yellow);
-            color: #111;
+            background: var(--secondary);
+            color: white;
             border: none;
             padding: 8px 20px;
             border-radius: 6px;
@@ -400,12 +400,12 @@
         }
         
         .view-recipe:hover {
-            background: #e6aa45;
+            background: #218277;
         }
         
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2533 100%);
             color: white;
             padding: 60px 0 30px;
         }
@@ -431,7 +431,7 @@
             left: 0;
             width: 50px;
             height: 2px;
-            background: var(--amazon-orange);
+            background: var(--primary);
         }
         
         .footer-column p {
@@ -457,7 +457,7 @@
         }
         
         .social-links a:hover {
-            background: var(--amazon-orange);
+            background: var(--primary);
             transform: translateY(-3px);
         }
         
@@ -477,7 +477,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--amazon-yellow);
+            color: var(--primary);
             transform: translateX(5px);
         }
         
@@ -495,8 +495,8 @@
         }
         
         .newsletter-form button {
-            background: var(--amazon-orange);
-            color: #111;
+            background: var(--primary);
+            color: white;
             border: none;
             padding: 0 20px;
             font-weight: 500;
@@ -506,7 +506,7 @@
         }
         
         .newsletter-form button:hover {
-            background: #e68a00;
+            background: #e55a2d;
         }
         
         .footer-bottom {
@@ -517,162 +517,19 @@
             font-size: 14px;
         }
         
-        /* Recipe Modal */
-        .modal {
+        /* Sticky Mobile Ad */
+        .sticky-mobile-ad {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 20px;
-        }
-        
-        .modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .modal-content {
             background: white;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            padding: 10px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: none;
         }
         
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.2);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .close-modal:hover {
-            background: var(--amazon-orange);
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: 40px;
-        }
-        
-        .modal-header {
-            margin-bottom: 30px;
-        }
-        
-        .modal-header h3 {
-            font-size: 32px;
-            color: var(--amazon-dark-blue);
-            margin-bottom: 15px;
-        }
-        
-        .modal-category {
-            display: inline-block;
-            background: var(--amazon-yellow);
-            color: var(--amazon-dark-blue);
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        
-        .modal-description {
-            color: #555;
-            margin: 20px 0;
-            font-size: 18px;
-            line-height: 1.7;
-        }
-        
-        .modal-meta {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .modal-meta div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-        }
-        
-        .modal-meta i {
-            color: var(--amazon-orange);
-            font-size: 20px;
-        }
-        
-        .modal-section {
-            margin-bottom: 30px;
-        }
-        
-        .modal-section h4 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--amazon-dark-blue);
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .modal-section h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--amazon-orange);
-        }
-        
-        .ingredients-list, .instructions-list {
-            padding-left: 20px;
-        }
-        
-        .ingredients-list li, .instructions-list li {
-            margin-bottom: 12px;
-            padding-left: 10px;
-            position: relative;
-        }
-        
-        .ingredients-list li::before, .instructions-list li::before {
-            content: '•';
-            color: var(--amazon-orange);
-            position: absolute;
-            left: -15px;
-            font-size: 20px;
-        }
-        
-        .instructions-list {
-            list-style-type: decimal;
-            padding-left: 25px;
-        }
-        
-        .instructions-list li {
-            margin-bottom: 15px;
-        }
-        
-        /* Responsive Design */
         @media (max-width: 992px) {
             .hero {
                 height: 400px;
@@ -708,12 +565,8 @@
                 font-size: 30px;
             }
             
-            .modal-body {
-                padding: 30px 20px;
-            }
-            
-            .modal-header h3 {
-                font-size: 28px;
+            .sticky-mobile-ad {
+                display: block;
             }
         }
         
@@ -746,41 +599,16 @@
             .recipes-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .modal-meta {
-                flex-direction: column;
-                gap: 15px;
-            }
         }
         
-        /* Sticky Mobile Ad */
-        .sticky-mobile-ad {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-            display: none;
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        @media (max-width: 768px) {
-            .sticky-mobile-ad {
-                display: block;
-            }
-        }
-        
-        .ad-fallback {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f8f9fa;
-            color: #6c757d;
-            font-weight: 500;
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
         }
     </style>
 </head>
@@ -792,7 +620,7 @@
                 <div class="logo-icon">
                     <i class="fas fa-utensils"></i>
                 </div>
-                <h1 class="heading">ADILY FLAVOR</h1>
+                <h1>FlavorFusion</h1>
             </div>
             
             <nav>
@@ -818,11 +646,11 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h2 class="heading">Discover Delicious Recipes</h2>
+            <div class="hero-content fade-in">
+                <h2>Discover Culinary Delights</h2>
                 <p>Explore our collection of mouthwatering recipes from around the world. Cook like a pro with our easy-to-follow instructions.</p>
                 <a href="#categories" class="btn">
-                    Browse Categories <i class="fas fa-arrow-right"></i>
+                    Explore Recipes <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -843,7 +671,7 @@
     <section id="categories" class="categories">
         <div class="container">
             <div class="section-title">
-                <h2 class="heading">Recipe Categories</h2>
+                <h2>Recipe Categories</h2>
                 <p>Browse our delicious recipes by category and find your next culinary inspiration</p>
             </div>
             
@@ -854,16 +682,14 @@
                     <button class="category-tab" data-category="lunch">Lunch</button>
                     <button class="category-tab" data-category="dinner">Dinner</button>
                     <button class="category-tab" data-category="dessert">Dessert</button>
-                    <button class="category-tab" data-category="appetizer">Appetizer</button>
-                    <button class="category-tab" data-category="vegetarian">Vegetarian</button>
                 </div>
             </div>
             
             <div class="recipes-grid">
                 <!-- Recipe 1 -->
-                <div class="recipe-card">
+                <div class="recipe-card fade-in">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Margherita Pizza">
                         <div class="recipe-category">Dinner</div>
                     </div>
                     <div class="recipe-content">
@@ -884,75 +710,18 @@
                 </div>
                 
                 <!-- Recipe 2 -->
-                <div class="recipe-card">
+                <div class="recipe-card fade-in">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
-                        <div class="recipe-category">Dinner</div>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>Spaghetti Bolognese</h3>
-                        <p>Classic Italian pasta with rich meat sauce, perfect for family dinners and special occasions.</p>
-                        <div class="recipe-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-clock meta-icon"></i>
-                                <span>15 min prep</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-fire meta-icon"></i>
-                                <span>45 min cook</span>
-                            </div>
-                        </div>
-                        <button class="view-recipe">View Recipe</button>
-                    </div>
-                </div>
-                
-                <!-- Recipe 3 -->
-                <div class="recipe-card">
-                    <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
-                        <div class="recipe-category">Dessert</div>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>Chocolate Chip Cookies</h3>
-                        <p>Soft and chewy cookies loaded with chocolate chips - the perfect sweet treat for any occasion.</p>
-                        <div class="recipe-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-clock meta-icon"></i>
-                                <span>15 min prep</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-fire meta-icon"></i>
-                                <span>10 min cook</span>
-                            </div>
-                        </div>
-                        <button class="view-recipe">View Recipe</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- In-content Ad (728x90) -->
-            <div class="ad-container" style="height: 90px;">
-                <span class="ad-label">ADVERTISEMENT</span>
-                <div class="ad-content">
-                    <script async="async" data-cfasync="false" src="//pl26974695.profitableratecpm.com/daa6b9cb6f4408986b0b8175f29f778b/invoke.js"></script>
-                    <div id="container-daa6b9cb6f4408986b0b8175f29f778b"></div>
-                </div>
-            </div>
-            
-            <div class="recipes-grid">
-                <!-- Recipe 4 -->
-                <div class="recipe-card">
-                    <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Avocado Toast">
                         <div class="recipe-category">Breakfast</div>
                     </div>
                     <div class="recipe-content">
-                        <h3>Avocado Toast</h3>
-                        <p>Simple, nutritious breakfast with creamy avocado on toasted artisan bread with optional toppings.</p>
+                        <h3>Avocado Toast Deluxe</h3>
+                        <p>Creamy avocado on artisan bread with cherry tomatoes, feta cheese, and a drizzle of olive oil.</p>
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
-                                <span>5 min prep</span>
+                                <span>10 min prep</span>
                             </div>
                             <div class="meta-item">
                                 <i class="fas fa-fire meta-icon"></i>
@@ -963,15 +732,95 @@
                     </div>
                 </div>
                 
-                <!-- Recipe 5 -->
-                <div class="recipe-card">
+                <!-- Recipe 3 -->
+                <div class="recipe-card fade-in">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
-                        <div class="recipe-category">Vegetarian</div>
+                        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Chocolate Cake">
+                        <div class="recipe-category">Dessert</div>
                     </div>
                     <div class="recipe-content">
-                        <h3>Vegetable Stir Fry</h3>
-                        <p>Quick and healthy vegetable stir fry with a flavorful sauce, perfect for busy weeknights.</p>
+                        <h3>Decadent Chocolate Cake</h3>
+                        <p>Rich, moist chocolate cake with a silky ganache frosting and fresh berries.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>25 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>35 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- In-content Ad (728x90) -->
+            <div class="ad-container" style="height: 90px; margin: 40px 0;">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <div class="ad-content">
+                    <script async="async" data-cfasync="false" src="//pl26974695.profitableratecpm.com/daa6b9cb6f4408986b0b8175f29f778b/invoke.js"></script>
+                    <div id="container-daa6b9cb6f4408986b0b8175f29f778b"></div>
+                </div>
+            </div>
+            
+            <div class="recipes-grid">
+                <!-- Recipe 4 -->
+                <div class="recipe-card fade-in">
+                    <div class="recipe-img">
+                        <img src="https://images.unsplash.com/photo-1516100882582-96c3a05fe590?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pasta">
+                        <div class="recipe-category">Lunch</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Creamy Mushroom Pasta</h3>
+                        <p>Fettuccine in a rich mushroom cream sauce with parmesan and fresh herbs.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>20 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 5 -->
+                <div class="recipe-card fade-in">
+                    <div class="recipe-img">
+                        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Salmon">
+                        <div class="recipe-category">Dinner</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Herb-Crusted Salmon</h3>
+                        <p>Perfectly baked salmon with a crispy herb crust and lemon butter sauce.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>10 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>15 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 6 -->
+                <div class="recipe-card fade-in">
+                    <div class="recipe-img">
+                        <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="French Toast">
+                        <div class="recipe-category">Breakfast</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Berry Stuffed French Toast</h3>
+                        <p>Brioche french toast stuffed with cream cheese and berries, topped with maple syrup.</p>
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -980,29 +829,6 @@
                             <div class="meta-item">
                                 <i class="fas fa-fire meta-icon"></i>
                                 <span>10 min cook</span>
-                            </div>
-                        </div>
-                        <button class="view-recipe">View Recipe</button>
-                    </div>
-                </div>
-                
-                <!-- Recipe 6 -->
-                <div class="recipe-card">
-                    <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
-                        <div class="recipe-category">Breakfast</div>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>Berry Smoothie Bowl</h3>
-                        <p>Refreshing and nutritious smoothie bowl topped with fresh fruits and crunchy granola.</p>
-                        <div class="recipe-meta">
-                            <div class="meta-item">
-                                <i class="fas fa-clock meta-icon"></i>
-                                <span>10 min prep</span>
-                            </div>
-                            <div class="meta-item">
-                                <i class="fas fa-fire meta-icon"></i>
-                                <span>0 min cook</span>
                             </div>
                         </div>
                         <button class="view-recipe">View Recipe</button>
@@ -1014,7 +840,7 @@
 
     <!-- Bottom Banner Ad (970x250) -->
     <div class="container">
-        <div class="ad-container" style="height: 250px;">
+        <div class="ad-container" style="height: 250px; margin: 40px 0;">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
                 <script async="async" data-cfasync="false" src="//pl26974695.profitableratecpm.com/daa6b9cb6f4408986b0b8175f29f778b/invoke.js"></script>
@@ -1041,18 +867,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3 class="heading">ADILY FLAVOR</h3>
+                    <h3>FlavorFusion</h3>
                     <p>Sharing the joy of cooking with food enthusiasts around the world. Discover, create, and share delicious recipes.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="heading">Quick Links</h3>
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
                         <li><a href="#categories">Categories</a></li>
@@ -1063,7 +889,7 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="heading">Categories</h3>
+                    <h3>Categories</h3>
                     <ul class="footer-links">
                         <li><a href="#">Breakfast</a></li>
                         <li><a href="#">Lunch</a></li>
@@ -1074,7 +900,7 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3 class="heading">Newsletter</h3>
+                    <h3>Newsletter</h3>
                     <p>Subscribe to get the latest recipes and cooking tips delivered to your inbox.</p>
                     <div class="newsletter-form">
                         <input type="email" placeholder="Your email address">
@@ -1084,102 +910,19 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 ADILY FLAVOR. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff9900;"></i> for food lovers</p>
+                <p>&copy; 2023 FlavorFusion. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff6b35;"></i> for food lovers</p>
             </div>
         </div>
     </footer>
 
-    <!-- Recipe Detail Modal -->
-    <div class="modal" id="recipeModal">
-        <div class="modal-content">
-            <div class="close-modal">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="modal-body">
-                <div class="modal-header">
-                    <h3 class="heading">Classic Margherita Pizza</h3>
-                    <span class="modal-category">Dinner</span>
-                </div>
-                
-                <p class="modal-description">
-                    Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust. This simple yet delicious recipe brings the taste of Italy to your kitchen.
-                </p>
-                
-                <div class="modal-meta">
-                    <div>
-                        <i class="fas fa-clock"></i>
-                        <span>Prep Time: 20 minutes</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-fire"></i>
-                        <span>Cook Time: 15 minutes</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-user-friends"></i>
-                        <span>Servings: 2-3 people</span>
-                    </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Ingredients</h4>
-                    <ul class="ingredients-list">
-                        <li>1 pizza dough ball</li>
-                        <li>3 tbsp tomato sauce</li>
-                        <li>125g fresh mozzarella cheese</li>
-                        <li>Fresh basil leaves</li>
-                        <li>2 tbsp olive oil</li>
-                        <li>Salt and pepper to taste</li>
-                        <li>1 tsp dried oregano</li>
-                        <li>1 clove garlic, minced</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Instructions</h4>
-                    <ol class="instructions-list">
-                        <li>Preheat your oven to 475°F (245°C) with a pizza stone or steel if you have one.</li>
-                        <li>Roll out the pizza dough on a floured surface to your desired thickness.</li>
-                        <li>Spread tomato sauce evenly over the dough, leaving a small border for the crust.</li>
-                        <li>Tear the mozzarella into pieces and distribute evenly over the sauce.</li>
-                        <li>Sprinkle minced garlic and oregano over the cheese.</li>
-                        <li>Bake for 12-15 minutes until the crust is golden and the cheese is bubbly.</li>
-                        <li>Remove from oven, top with fresh basil leaves, drizzle with olive oil, and season with salt and pepper.</li>
-                        <li>Slice and serve immediately.</li>
-                    </ol>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Notes</h4>
-                    <p>For best results, use high-quality ingredients. Fresh mozzarella makes a significant difference. If you like a crispier crust, pre-bake the dough for 3-4 minutes before adding toppings.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Toggle recipe modal
-        const modal = document.getElementById('recipeModal');
         const viewButtons = document.querySelectorAll('.view-recipe');
-        const closeModal = document.querySelector('.close-modal');
         
         viewButtons.forEach(button => {
             button.addEventListener('click', () => {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                alert('Recipe details would open here in a complete implementation');
             });
-        });
-        
-        closeModal.addEventListener('click', () => {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
         });
         
         // Category tabs functionality
@@ -1194,7 +937,6 @@
                 tab.classList.add('active');
                 
                 // Here would be code to filter recipes by category
-                // For this demo, we'll just simulate the action
                 console.log(`Showing recipes for: ${tab.dataset.category}`);
             });
         });
@@ -1213,15 +955,18 @@
             alert('Admin login modal would open here. This would allow access to recipe management.');
         });
         
-        // Simulate ad loading with fallback
-        setTimeout(() => {
-            const adContainers = document.querySelectorAll('#container-daa6b9cb6f4408986b0b8175f29f778b');
-            adContainers.forEach(container => {
-                if (container.innerHTML.trim() === '') {
-                    container.innerHTML = '<div class="ad-fallback">Advertisement Placeholder</div>';
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
                 }
             });
-        }, 2000);
+        });
+        
+        document.querySelectorAll('.recipe-card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
 
     <!-- Added the requested script -->
