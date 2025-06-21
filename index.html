@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --amazon-orange: #FF9900;
-            --amazon-dark-blue: #232F3E;
-            --amazon-light-blue: #37475A;
-            --amazon-yellow: #FEBD69;
+            --primary-orange: #FF9900;
+            --dark-blue: #232F3E;
+            --light-blue: #37475A;
+            --accent-yellow: #FEBD69;
+            --light-gray: #f5f5f5;
+            --dark-gray: #444;
+            --white: #ffffff;
         }
         
         * {
@@ -22,10 +25,10 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
             line-height: 1.6;
-            padding-bottom: 70px;
+            overflow-x: hidden;
         }
         
         .heading {
@@ -42,8 +45,8 @@
         
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1a2533 100%);
+            color: var(--white);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
@@ -64,7 +67,7 @@
         }
         
         .logo-icon {
-            color: var(--amazon-orange);
+            color: var(--primary-orange);
             font-size: 28px;
         }
         
@@ -80,7 +83,7 @@
         }
         
         nav a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -89,7 +92,7 @@
         }
         
         nav a:hover {
-            color: var(--amazon-yellow);
+            color: var(--accent-yellow);
         }
         
         nav a::after {
@@ -99,7 +102,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--amazon-yellow);
+            background: var(--accent-yellow);
             transition: width 0.3s ease;
         }
         
@@ -110,7 +113,7 @@
         .admin-btn {
             background: transparent;
             border: none;
-            color: white;
+            color: var(--white);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -120,14 +123,14 @@
         }
         
         .admin-btn:hover {
-            color: var(--amazon-yellow);
+            color: var(--accent-yellow);
         }
         
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: white;
+            color: var(--white);
             font-size: 24px;
             cursor: pointer;
         }
@@ -141,11 +144,36 @@
             height: 450px;
             display: flex;
             align-items: center;
-            color: white;
+            color: var(--white);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(35, 47, 62, 0.8), rgba(255, 153, 0, 0.4));
         }
         
         .hero-content {
             max-width: 600px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .hero h2 {
@@ -165,7 +193,7 @@
             align-items: center;
             justify-content: center;
             padding: 12px 30px;
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
             color: #111;
             text-decoration: none;
             font-weight: 600;
@@ -175,12 +203,33 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
+            position: relative;
+            overflow: hidden;
         }
         
         .btn:hover {
             background: #e68a00;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+        }
+        
+        .btn:hover::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(25deg);
+            transition: all 0.6s ease;
+            animation: shine 1.5s forwards;
+        }
+        
+        @keyframes shine {
+            0% { left: -60%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
         }
         
         .btn i {
@@ -192,44 +241,10 @@
             transform: translateX(4px);
         }
         
-        /* Ads */
-        .ad-container {
-            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
-            border: 1px dashed #ccc;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            margin: 20px 0;
-        }
-        
-        .ad-label {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            font-size: 10px;
-            padding: 3px 8px;
-            border-radius: 20px;
-        }
-        
-        .ad-content {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .ad-content p {
-            color: #666;
-            font-weight: 500;
-        }
-        
-        /* Categories */
+        /* Categories Section */
         .categories {
-            padding: 50px 0;
-            background: white;
+            padding: 60px 0 30px;
+            background: var(--white);
         }
         
         .section-title {
@@ -239,14 +254,28 @@
         
         .section-title h2 {
             font-size: 36px;
-            color: var(--amazon-dark-blue);
+            color: var(--dark-blue);
             margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-orange);
+            border-radius: 2px;
         }
         
         .section-title p {
-            color: #666;
+            color: var(--dark-gray);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto 0;
         }
         
         .tabs-container {
@@ -261,7 +290,7 @@
         }
         
         .tabs-container::-webkit-scrollbar-thumb {
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
             border-radius: 10px;
         }
         
@@ -269,12 +298,13 @@
             display: flex;
             gap: 12px;
             padding: 5px;
+            justify-content: center;
         }
         
         .category-tab {
             padding: 10px 20px;
-            background: white;
-            border: 2px solid var(--amazon-light-blue);
+            background: var(--white);
+            border: 2px solid var(--light-blue);
             border-radius: 30px;
             font-weight: 500;
             cursor: pointer;
@@ -284,9 +314,10 @@
         }
         
         .category-tab:hover, .category-tab.active {
-            background: var(--amazon-orange);
-            color: white;
-            border-color: var(--amazon-orange);
+            background: var(--primary-orange);
+            color: var(--white);
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
         }
         
         /* Recipe Cards */
@@ -298,7 +329,7 @@
         }
         
         .recipe-card {
-            background: white;
+            background: var(--white);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -306,6 +337,17 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            transform: translateY(0);
+            animation: cardAppear 0.5s ease-out forwards;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .recipe-card:hover {
@@ -335,12 +377,13 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: var(--amazon-yellow);
-            color: var(--amazon-dark-blue);
+            background: var(--accent-yellow);
+            color: var(--dark-blue);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
+            z-index: 2;
         }
         
         .recipe-content {
@@ -353,11 +396,11 @@
         .recipe-content h3 {
             font-size: 20px;
             margin-bottom: 10px;
-            color: var(--amazon-dark-blue);
+            color: var(--dark-blue);
         }
         
         .recipe-content p {
-            color: #666;
+            color: var(--dark-gray);
             margin-bottom: 20px;
             flex-grow: 1;
         }
@@ -378,11 +421,11 @@
         }
         
         .meta-icon {
-            color: var(--amazon-orange);
+            color: var(--primary-orange);
         }
         
         .view-recipe {
-            background: var(--amazon-yellow);
+            background: var(--accent-yellow);
             color: #111;
             border: none;
             padding: 8px 20px;
@@ -398,8 +441,8 @@
         
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #1a2533 100%);
+            color: var(--white);
             padding: 60px 0 30px;
         }
         
@@ -424,7 +467,7 @@
             left: 0;
             width: 50px;
             height: 2px;
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
         }
         
         .footer-column p {
@@ -445,12 +488,12 @@
             height: 40px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
-            color: white;
+            color: var(--white);
             transition: all 0.3s ease;
         }
         
         .social-links a:hover {
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
             transform: translateY(-3px);
         }
         
@@ -470,7 +513,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--amazon-yellow);
+            color: var(--accent-yellow);
             transform: translateX(5px);
         }
         
@@ -488,7 +531,7 @@
         }
         
         .newsletter-form button {
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
             color: #111;
             border: none;
             padding: 0 20px;
@@ -534,7 +577,7 @@
         }
         
         .modal-content {
-            background: white;
+            background: var(--white);
             border-radius: 12px;
             width: 100%;
             max-width: 900px;
@@ -542,6 +585,12 @@
             overflow-y: auto;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transform: scale(0.95);
+            transition: transform 0.4s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
         }
         
         .close-modal {
@@ -549,7 +598,7 @@
             top: 20px;
             right: 20px;
             background: rgba(0,0,0,0.2);
-            color: white;
+            color: var(--white);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -563,7 +612,7 @@
         }
         
         .close-modal:hover {
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
             transform: rotate(90deg);
         }
         
@@ -577,14 +626,14 @@
         
         .modal-header h3 {
             font-size: 32px;
-            color: var(--amazon-dark-blue);
+            color: var(--dark-blue);
             margin-bottom: 15px;
         }
         
         .modal-category {
             display: inline-block;
-            background: var(--amazon-yellow);
-            color: var(--amazon-dark-blue);
+            background: var(--accent-yellow);
+            color: var(--dark-blue);
             padding: 6px 18px;
             border-radius: 20px;
             font-weight: 600;
@@ -602,6 +651,7 @@
             display: flex;
             gap: 30px;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
         
         .modal-meta div {
@@ -612,7 +662,7 @@
         }
         
         .modal-meta i {
-            color: var(--amazon-orange);
+            color: var(--primary-orange);
             font-size: 20px;
         }
         
@@ -623,7 +673,7 @@
         .modal-section h4 {
             font-size: 22px;
             margin-bottom: 15px;
-            color: var(--amazon-dark-blue);
+            color: var(--dark-blue);
             position: relative;
             padding-bottom: 10px;
         }
@@ -635,7 +685,7 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: var(--amazon-orange);
+            background: var(--primary-orange);
         }
         
         .ingredients-list, .instructions-list {
@@ -650,7 +700,7 @@
         
         .ingredients-list li::before, .instructions-list li::before {
             content: '•';
-            color: var(--amazon-orange);
+            color: var(--primary-orange);
             position: absolute;
             left: -15px;
             font-size: 20px;
@@ -663,34 +713,6 @@
         
         .instructions-list li {
             margin-bottom: 15px;
-        }
-        
-        /* Sticky Mobile Ad */
-        .sticky-mobile-ad {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            background: white;
-            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
-            padding: 10px 0;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .sticky-mobile-ad.active {
-            transform: translateY(0);
-        }
-        
-        .sticky-mobile-ad .container {
-            padding: 0;
-        }
-        
-        .sticky-mobile-ad .ad-container {
-            border-radius: 0;
-            margin: 0;
-            height: 70px;
         }
         
         /* Responsive Design */
@@ -709,6 +731,10 @@
             
             .mobile-menu-btn {
                 display: block;
+            }
+            
+            .modal-body {
+                padding: 30px;
             }
         }
         
@@ -730,17 +756,15 @@
             }
             
             .modal-body {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
             
             .modal-header h3 {
                 font-size: 28px;
             }
-        }
-        
-        @media (min-width: 769px) {
-            .sticky-mobile-ad {
-                display: none;
+            
+            .category-tabs {
+                justify-content: flex-start;
             }
         }
         
@@ -778,6 +802,14 @@
                 flex-direction: column;
                 gap: 15px;
             }
+            
+            .modal-body {
+                padding: 20px 15px;
+            }
+            
+            .modal-header h3 {
+                font-size: 24px;
+            }
         }
         
         /* Animation for recipe cards */
@@ -798,7 +830,7 @@
         .no-recipes {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 40px 0;
+            padding: 60px 0;
             background: #f8f8f8;
             border-radius: 12px;
             border: 2px dashed #ddd;
@@ -806,7 +838,7 @@
         }
         
         .no-recipes h3 {
-            color: var(--amazon-dark-blue);
+            color: var(--dark-blue);
             margin-bottom: 15px;
             font-size: 24px;
         }
@@ -862,16 +894,6 @@
         </div>
     </section>
 
-    <!-- Top Banner Ad -->
-    <div class="container">
-        <div class="ad-container" style="height: 100px;">
-            <span class="ad-label">ADVERTISEMENT</span>
-            <div class="ad-content">
-                <p>Top Banner Advertisement - 970x250</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Categories Section -->
     <section id="categories" class="categories">
         <div class="container">
@@ -893,8 +915,8 @@
             </div>
             
             <div class="recipes-grid" id="recipesGrid">
-                <!-- Recipe 1 -->
-                <div class="recipe-card" data-category="dinner">
+                <!-- Recipe 1 - Dinner -->
+                <div class="recipe-card" data-category="dinner" data-id="1">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
                         <div class="recipe-category">Dinner</div>
@@ -916,8 +938,8 @@
                     </div>
                 </div>
                 
-                <!-- Recipe 2 -->
-                <div class="recipe-card" data-category="dinner">
+                <!-- Recipe 2 - Dinner -->
+                <div class="recipe-card" data-category="dinner" data-id="2">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
                         <div class="recipe-category">Dinner</div>
@@ -939,8 +961,8 @@
                     </div>
                 </div>
                 
-                <!-- Recipe 3 -->
-                <div class="recipe-card" data-category="dessert">
+                <!-- Recipe 3 - Dessert -->
+                <div class="recipe-card" data-category="dessert" data-id="3">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
                         <div class="recipe-category">Dessert</div>
@@ -962,8 +984,8 @@
                     </div>
                 </div>
                 
-                <!-- Recipe 4 -->
-                <div class="recipe-card" data-category="breakfast">
+                <!-- Recipe 4 - Breakfast -->
+                <div class="recipe-card" data-category="breakfast" data-id="4">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
                         <div class="recipe-category">Breakfast</div>
@@ -985,8 +1007,8 @@
                     </div>
                 </div>
                 
-                <!-- Recipe 5 -->
-                <div class="recipe-card" data-category="vegetarian">
+                <!-- Recipe 5 - Vegetarian -->
+                <div class="recipe-card" data-category="vegetarian" data-id="5">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
                         <div class="recipe-category">Vegetarian</div>
@@ -1008,8 +1030,8 @@
                     </div>
                 </div>
                 
-                <!-- Recipe 6 -->
-                <div class="recipe-card" data-category="breakfast">
+                <!-- Recipe 6 - Breakfast -->
+                <div class="recipe-card" data-category="breakfast" data-id="6">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
                         <div class="recipe-category">Breakfast</div>
@@ -1030,39 +1052,55 @@
                         <button class="view-recipe">View Recipe</button>
                     </div>
                 </div>
-            </div>
-            
-            <!-- In-content Ad -->
-            <div class="ad-container" style="height: 120px;">
-                <span class="ad-label">ADVERTISEMENT</span>
-                <div class="ad-content">
-                    <p>In-content Advertisement - 728x90</p>
+                
+                <!-- Recipe 7 - Lunch -->
+                <div class="recipe-card" data-category="lunch" data-id="7">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chicken Salad">
+                        <div class="recipe-category">Lunch</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Grilled Chicken Salad</h3>
+                        <p>Fresh and healthy salad with grilled chicken, mixed greens, and a tangy vinaigrette dressing.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>20 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>15 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 8 - Appetizer -->
+                <div class="recipe-card" data-category="appetizer" data-id="8">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/2133989/pexels-photo-2133989.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Stuffed Mushrooms">
+                        <div class="recipe-category">Appetizer</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Stuffed Mushrooms</h3>
+                        <p>Creamy cheese and herb stuffed mushrooms, baked to perfection for a delicious starter.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>20 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Bottom Banner Ad -->
-    <div class="container">
-        <div class="ad-container" style="height: 100px;">
-            <span class="ad-label">ADVERTISEMENT</span>
-            <div class="ad-content">
-                <p>Bottom Banner Advertisement - 970x250</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sticky Mobile Ad -->
-    <div class="sticky-mobile-ad">
-        <div class="container">
-            <div class="ad-container" style="height: 70px;">
-                <span class="ad-label">ADVERTISEMENT</span>
-                <div class="ad-content">
-                    <p>Sticky Mobile Ad - 320x50</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer>
@@ -1093,11 +1131,11 @@
                 <div class="footer-column">
                     <h3 class="heading">Categories</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Breakfast</a></li>
-                        <li><a href="#">Lunch</a></li>
-                        <li><a href="#">Dinner</a></li>
-                        <li><a href="#">Desserts</a></li>
-                        <li><a href="#">Vegetarian</a></li>
+                        <li><a href="#" data-category="breakfast">Breakfast</a></li>
+                        <li><a href="#" data-category="lunch">Lunch</a></li>
+                        <li><a href="#" data-category="dinner">Dinner</a></li>
+                        <li><a href="#" data-category="dessert">Desserts</a></li>
+                        <li><a href="#" data-category="vegetarian">Vegetarian</a></li>
                     </ul>
                 </div>
                 
@@ -1106,56 +1144,4 @@
                     <p>Subscribe to get the latest recipes and cooking tips delivered to your inbox.</p>
                     <div class="newsletter-form">
                         <input type="email" placeholder="Your email address">
-                        <button type="submit">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 ADILY FLAVOR. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff9900;"></i> for food lovers</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Recipe Detail Modal -->
-    <div class="modal" id="recipeModal">
-        <div class="modal-content">
-            <div class="close-modal">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="modal-body">
-                <div class="modal-header">
-                    <h3 class="heading">Classic Margherita Pizza</h3>
-                    <span class="modal-category">Dinner</span>
-                </div>
-                
-                <p class="modal-description">
-                    Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust. This simple yet delicious recipe brings the taste of Italy to your kitchen.
-                </p>
-                
-                <div class="modal-meta">
-                    <div>
-                        <i class="fas fa-clock"></i>
-                        <span>Prep Time: 20 minutes</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-fire"></i>
-                        <span>Cook Time: 15 minutes</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-user-friends"></i>
-                        <span>Servings: 2-3 people</span>
-                    </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Ingredients</h4>
-                    <ul class="ingredients-list">
-                        <li>1 pizza dough ball</li>
-                        <li>3 tbsp tomato sauce</li>
-                        <li>125g fresh mozzarella cheese</li>
-                        <li>Fresh basil leaves</li>
-                        <li>2 tbsp olive oil</li>
-                        <li>Salt and pepper to taste</li>
-                        <li>1 tsp dried oregano</li>
-                        <li>1 clove garlic, minced</li
+                        <button type="submit
