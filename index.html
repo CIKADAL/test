@@ -779,6 +779,43 @@
                 gap: 15px;
             }
         }
+        
+        /* Animation for recipe cards */
+        .recipe-card {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* No recipes message */
+        .no-recipes {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 0;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border: 2px dashed #ddd;
+            margin: 20px 0;
+        }
+        
+        .no-recipes h3 {
+            color: var(--amazon-dark-blue);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .no-recipes p {
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -855,9 +892,9 @@
                 </div>
             </div>
             
-            <div class="recipes-grid">
+            <div class="recipes-grid" id="recipesGrid">
                 <!-- Recipe 1 -->
-                <div class="recipe-card">
+                <div class="recipe-card" data-category="dinner">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
                         <div class="recipe-category">Dinner</div>
@@ -880,7 +917,7 @@
                 </div>
                 
                 <!-- Recipe 2 -->
-                <div class="recipe-card">
+                <div class="recipe-card" data-category="dinner">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
                         <div class="recipe-category">Dinner</div>
@@ -903,7 +940,7 @@
                 </div>
                 
                 <!-- Recipe 3 -->
-                <div class="recipe-card">
+                <div class="recipe-card" data-category="dessert">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
                         <div class="recipe-category">Dessert</div>
@@ -924,19 +961,9 @@
                         <button class="view-recipe">View Recipe</button>
                     </div>
                 </div>
-            </div>
-            
-            <!-- In-content Ad -->
-            <div class="ad-container" style="height: 120px;">
-                <span class="ad-label">ADVERTISEMENT</span>
-                <div class="ad-content">
-                    <p>In-content Advertisement - 728x90</p>
-                </div>
-            </div>
-            
-            <div class="recipes-grid">
+                
                 <!-- Recipe 4 -->
-                <div class="recipe-card">
+                <div class="recipe-card" data-category="breakfast">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
                         <div class="recipe-category">Breakfast</div>
@@ -959,7 +986,7 @@
                 </div>
                 
                 <!-- Recipe 5 -->
-                <div class="recipe-card">
+                <div class="recipe-card" data-category="vegetarian">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
                         <div class="recipe-category">Vegetarian</div>
@@ -982,7 +1009,7 @@
                 </div>
                 
                 <!-- Recipe 6 -->
-                <div class="recipe-card">
+                <div class="recipe-card" data-category="breakfast">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
                         <div class="recipe-category">Breakfast</div>
@@ -1002,6 +1029,14 @@
                         </div>
                         <button class="view-recipe">View Recipe</button>
                     </div>
+                </div>
+            </div>
+            
+            <!-- In-content Ad -->
+            <div class="ad-container" style="height: 120px;">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <div class="ad-content">
+                    <p>In-content Advertisement - 728x90</p>
                 </div>
             </div>
         </div>
@@ -1123,24 +1158,4 @@
                         <li>2 tbsp olive oil</li>
                         <li>Salt and pepper to taste</li>
                         <li>1 tsp dried oregano</li>
-                        <li>1 clove garlic, minced</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Instructions</h4>
-                    <ol class="instructions-list">
-                        <li>Preheat your oven to 475°F (245°C) with a pizza stone or steel if you have one.</li>
-                        <li>Roll out the pizza dough on a floured surface to your desired thickness.</li>
-                        <li>Spread tomato sauce evenly over the dough, leaving a small border for the crust.</li>
-                        <li>Tear the mozzarella into pieces and distribute evenly over the sauce.</li>
-                        <li>Sprinkle minced garlic and oregano over the cheese.</li>
-                        <li>Bake for 12-15 minutes until the crust is golden and the cheese is bubbly.</li>
-                        <li>Remove from oven, top with fresh basil leaves, drizzle with olive oil, and season with salt and pepper.</li>
-                        <li>Slice and serve immediately.</li>
-                    </ol>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Notes</h4>
-                   
+                        <li>1 clove garlic, minced</li
