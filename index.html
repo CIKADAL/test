@@ -1,743 +1,1228 @@
-// Recipe Data
-const recipes = [
-    {
-        id: 1,
-        title: "Classic Margherita Pizza",
-        category: "dinner",
-        prepTime: "20 min",
-        cookTime: "15 min",
-        description: "Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust.",
-        image: "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "1 pizza dough ball",
-            "3 tbsp tomato sauce",
-            "125g fresh mozzarella cheese",
-            "Fresh basil leaves",
-            "2 tbsp olive oil",
-            "Salt and pepper to taste",
-            "1 tsp dried oregano",
-            "1 clove garlic, minced"
-        ],
-        instructions: [
-            "Preheat your oven to 475°F (245°C) with a pizza stone or steel if you have one.",
-            "Roll out the pizza dough on a floured surface to your desired thickness.",
-            "Spread tomato sauce evenly over the dough, leaving a small border for the crust.",
-            "Tear the mozzarella into pieces and distribute evenly over the sauce.",
-            "Sprinkle minced garlic and oregano over the cheese.",
-            "Bake for 12-15 minutes until the crust is golden and the cheese is bubbly.",
-            "Remove from oven, top with fresh basil leaves, drizzle with olive oil, and season with salt and pepper.",
-            "Slice and serve immediately."
-        ],
-        notes: "For best results, use high-quality ingredients. Fresh mozzarella makes a significant difference. If you like a crispier crust, pre-bake the dough for 3-4 minutes before adding toppings."
-    },
-    {
-        id: 2,
-        title: "Spaghetti Bolognese",
-        category: "dinner",
-        prepTime: "15 min",
-        cookTime: "45 min",
-        description: "Classic Italian pasta with rich meat sauce, perfect for family dinners and special occasions.",
-        image: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "400g spaghetti",
-            "500g ground beef",
-            "1 onion, diced",
-            "2 cloves garlic, minced",
-            "1 carrot, finely diced",
-            "1 celery stalk, finely diced",
-            "400g canned tomatoes",
-            "2 tbsp tomato paste",
-            "1 tsp dried oregano",
-            "1 tsp dried basil",
-            "Salt and pepper to taste",
-            "Parmesan cheese for serving"
-        ],
-        instructions: [
-            "Cook spaghetti according to package instructions until al dente.",
-            "In a large pan, brown the ground beef over medium heat.",
-            "Add onion, garlic, carrot, and celery. Cook until vegetables soften.",
-            "Stir in canned tomatoes, tomato paste, and herbs. Simmer for 30 minutes.",
-            "Season with salt and pepper to taste.",
-            "Serve sauce over cooked spaghetti with grated Parmesan cheese."
-        ],
-        notes: "For a richer flavor, add a splash of red wine when cooking the sauce."
-    },
-    {
-        id: 3,
-        title: "Chocolate Chip Cookies",
-        category: "dessert",
-        prepTime: "15 min",
-        cookTime: "10 min",
-        description: "Soft and chewy cookies loaded with chocolate chips - the perfect sweet treat for any occasion.",
-        image: "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "225g all-purpose flour",
-            "1/2 tsp baking soda",
-            "170g unsalted butter, melted",
-            "150g brown sugar",
-            "100g white sugar",
-            "1 tbsp vanilla extract",
-            "1 egg",
-            "1 egg yolk",
-            "200g chocolate chips"
-        ],
-        instructions: [
-            "Preheat oven to 325°F (165°C). Line baking sheets with parchment paper.",
-            "Sift together the flour and baking soda; set aside.",
-            "Cream together the melted butter, brown sugar, and white sugar until well blended.",
-            "Beat in the vanilla, egg, and egg yolk until light and creamy.",
-            "Mix in the sifted ingredients until just blended.",
-            "Stir in the chocolate chips by hand.",
-            "Drop cookie dough by the tablespoon onto prepared baking sheets.",
-            "Bake for 10-12 minutes, or until edges are lightly toasted.",
-            "Cool on baking sheets for a few minutes before transferring to wire racks."
-        ],
-        notes: "For extra chewy cookies, chill the dough for at least 30 minutes before baking."
-    },
-    {
-        id: 4,
-        title: "Avocado Toast",
-        category: "breakfast",
-        prepTime: "5 min",
-        cookTime: "5 min",
-        description: "Simple, nutritious breakfast with creamy avocado on toasted artisan bread with optional toppings.",
-        image: "https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "2 slices artisan bread",
-            "1 ripe avocado",
-            "1 tbsp lemon juice",
-            "Salt and pepper to taste",
-            "Red pepper flakes (optional)",
-            "2 eggs (optional)",
-            "Microgreens or sprouts for garnish"
-        ],
-        instructions: [
-            "Toast the bread until golden and crisp.",
-            "Cut the avocado in half, remove the pit, and scoop the flesh into a bowl.",
-            "Add lemon juice, salt, and pepper. Mash with a fork to desired consistency.",
-            "Spread the avocado mixture on the toasted bread.",
-            "Top with optional ingredients like poached eggs, red pepper flakes, or microgreens.",
-            "Serve immediately."
-        ],
-        notes: "For extra flavor, drizzle with olive oil or sprinkle with everything bagel seasoning."
-    },
-    {
-        id: 5,
-        title: "Vegetable Stir Fry",
-        category: "vegetarian",
-        prepTime: "15 min",
-        cookTime: "10 min",
-        description: "Quick and healthy vegetable stir fry with a flavorful sauce, perfect for busy weeknights.",
-        image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "2 tbsp vegetable oil",
-            "2 cloves garlic, minced",
-            "1 tbsp ginger, grated",
-            "1 bell pepper, sliced",
-            "1 carrot, julienned",
-            "1 cup broccoli florets",
-            "1 cup snap peas",
-            "2 tbsp soy sauce",
-            "1 tbsp oyster sauce (or vegetarian alternative)",
-            "1 tsp sesame oil",
-            "1 tsp cornstarch mixed with 2 tbsp water"
-        ],
-        instructions: [
-            "Heat oil in a wok or large skillet over high heat.",
-            "Add garlic and ginger, stir for 30 seconds until fragrant.",
-            "Add vegetables starting with the ones that take longest to cook (carrots, broccoli).",
-            "Stir fry for 5-7 minutes until vegetables are crisp-tender.",
-            "Add soy sauce, oyster sauce, and sesame oil. Toss to combine.",
-            "Stir in cornstarch mixture and cook until sauce thickens.",
-            "Serve hot over rice or noodles."
-        ],
-        notes: "Customize with your favorite vegetables. Add tofu or tempeh for extra protein."
-    },
-    {
-        id: 6,
-        title: "Berry Smoothie Bowl",
-        category: "breakfast",
-        prepTime: "10 min",
-        cookTime: "0 min",
-        description: "Refreshing and nutritious smoothie bowl topped with fresh fruits and crunchy granola.",
-        image: "https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "1 frozen banana",
-            "1 cup mixed frozen berries",
-            "1/2 cup almond milk",
-            "1 tbsp honey or maple syrup",
-            "1/2 tsp vanilla extract",
-            "Toppings: fresh berries, granola, chia seeds, coconut flakes"
-        ],
-        instructions: [
-            "In a blender, combine frozen banana, mixed berries, almond milk, honey, and vanilla.",
-            "Blend until smooth and creamy, adding more liquid if needed.",
-            "Pour into a bowl and top with your favorite toppings.",
-            "Serve immediately with a spoon."
-        ],
-        notes: "For a thicker consistency, use less liquid. For extra protein, add a scoop of protein powder or Greek yogurt."
-    },
-    {
-        id: 7,
-        title: "Stuffed Mushrooms",
-        category: "appetizer",
-        prepTime: "15 min",
-        cookTime: "20 min",
-        description: "Creamy cheese and herb stuffed mushrooms - the perfect bite-sized appetizer for any gathering.",
-        image: "https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "20 large white mushrooms",
-            "2 tbsp olive oil",
-            "2 cloves garlic, minced",
-            "1/4 cup breadcrumbs",
-            "4 oz cream cheese, softened",
-            "1/4 cup grated Parmesan",
-            "1 tbsp fresh parsley, chopped",
-            "Salt and pepper to taste"
-        ],
-        instructions: [
-            "Preheat oven to 375°F (190°C). Line a baking sheet with parchment paper.",
-            "Clean mushrooms and remove stems. Chop stems finely.",
-            "Heat oil in a pan over medium heat. Add garlic and chopped mushroom stems. Cook until soft.",
-            "In a bowl, combine cooked stems, breadcrumbs, cream cheese, Parmesan, parsley, salt and pepper.",
-            "Fill each mushroom cap with the mixture, mounding slightly.",
-            "Bake for 18-20 minutes until mushrooms are tender and filling is golden.",
-            "Serve warm."
-        ],
-        notes: "For a vegetarian version, ensure the Parmesan is vegetarian. Add cooked sausage or bacon to the filling for extra flavor."
-    },
-    {
-        id: 8,
-        title: "Chicken Salad",
-        category: "lunch",
-        prepTime: "20 min",
-        cookTime: "0 min",
-        description: "Fresh and flavorful chicken salad with crisp vegetables and tangy dressing.",
-        image: "https://images.pexels.com/photos/2092897/pexels-photo-2092897.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "2 cups cooked chicken, shredded",
-            "1/2 cup mayonnaise",
-            "1 tbsp Dijon mustard",
-            "1 tbsp lemon juice",
-            "1 celery stalk, diced",
-            "1/4 cup red onion, finely diced",
-            "1/4 cup grapes, halved",
-            "1/4 cup walnuts, chopped",
-            "Salt and pepper to taste",
-            "Lettuce leaves for serving"
-        ],
-        instructions: [
-            "In a large bowl, combine mayonnaise, mustard, and lemon juice.",
-            "Add chicken, celery, red onion, grapes, and walnuts. Mix well.",
-            "Season with salt and pepper to taste.",
-            "Chill for at least 30 minutes before serving.",
-            "Serve on lettuce leaves or as a sandwich filling."
-        ],
-        notes: "For a lighter version, substitute half the mayonnaise with Greek yogurt."
-    }
-];
-
-// Additional recipes
-const additionalRecipes = [
-    {
-        id: 9,
-        title: "Vegetable Lasagna",
-        category: "dinner",
-        prepTime: "25 min",
-        cookTime: "45 min",
-        description: "Hearty vegetable lasagna with layers of pasta, cheese, and fresh vegetables.",
-        image: "https://images.pexels.com/photos/4079520/pexels-photo-4079520.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "9 lasagna noodles",
-            "2 cups ricotta cheese",
-            "1 egg",
-            "1/4 cup grated Parmesan",
-            "2 cups shredded mozzarella",
-            "2 cups marinara sauce",
-            "2 cups mixed vegetables (zucchini, spinach, mushrooms)",
-            "1 tsp Italian seasoning",
-            "Salt and pepper to taste"
-        ],
-        instructions: [
-            "Preheat oven to 375°F (190°C). Cook lasagna noodles according to package.",
-            "In a bowl, mix ricotta, egg, Parmesan, and Italian seasoning.",
-            "In a 9x13 dish, spread a thin layer of marinara sauce.",
-            "Layer 3 noodles, half the ricotta mixture, half the vegetables, and 1/3 of the mozzarella.",
-            "Repeat layers, ending with noodles, sauce, and remaining mozzarella.",
-            "Cover with foil and bake for 30 minutes. Remove foil and bake 15 more minutes.",
-            "Let stand 10 minutes before serving."
-        ],
-        notes: "Can be made ahead and refrigerated overnight before baking."
-    },
-    {
-        id: 10,
-        title: "French Toast",
-        category: "breakfast",
-        prepTime: "10 min",
-        cookTime: "15 min",
-        description: "Classic French toast with cinnamon and vanilla, served with maple syrup.",
-        image: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "8 slices thick bread",
-            "4 eggs",
-            "1 cup milk",
-            "1 tsp vanilla extract",
-            "1 tsp ground cinnamon",
-            "2 tbsp butter",
-            "Maple syrup for serving",
-            "Powdered sugar (optional)"
-        ],
-        instructions: [
-            "In a shallow dish, whisk together eggs, milk, vanilla, and cinnamon.",
-            "Heat a griddle or large skillet over medium heat. Add butter.",
-            "Dip bread slices in egg mixture, allowing to soak for a few seconds on each side.",
-            "Cook on griddle until golden brown, about 3-4 minutes per side.",
-            "Serve warm with maple syrup and powdered sugar if desired."
-        ],
-        notes: "For best results, use slightly stale bread. Challah or brioche work particularly well."
-    },
-    {
-        id: 11,
-        title: "Chocolate Mousse",
-        category: "dessert",
-        prepTime: "20 min",
-        cookTime: "0 min",
-        description: "Rich and creamy chocolate mousse topped with fresh berries.",
-        image: "https://images.pexels.com/photos/302478/pexels-photo-302478.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "200g dark chocolate, chopped",
-            "3 eggs, separated",
-            "1 tbsp sugar",
-            "1/2 cup heavy cream",
-            "1 tsp vanilla extract",
-            "Pinch of salt",
-            "Fresh berries for garnish"
-        ],
-        instructions: [
-            "Melt chocolate in a heatproof bowl over simmering water. Let cool slightly.",
-            "Whisk egg yolks into the melted chocolate one at a time.",
-            "In another bowl, whip cream to soft peaks. Fold into chocolate mixture.",
-            "In a clean bowl, beat egg whites with salt until foamy. Add sugar and beat to stiff peaks.",
-            "Gently fold egg whites into chocolate mixture in two additions.",
-            "Divide into serving dishes and chill for at least 4 hours.",
-            "Garnish with fresh berries before serving."
-        ],
-        notes: "For best results, use high-quality chocolate with at least 60% cocoa content."
-    },
-    {
-        id: 12,
-        title: "Caprese Salad",
-        category: "appetizer",
-        prepTime: "10 min",
-        cookTime: "0 min",
-        description: "Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.",
-        image: "https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=600",
-        ingredients: [
-            "2 large tomatoes, sliced",
-            "200g fresh mozzarella, sliced",
-            "Fresh basil leaves",
-            "2 tbsp extra virgin olive oil",
-            "1 tbsp balsamic glaze",
-            "Salt and pepper to taste"
-        ],
-        instructions: [
-            "Arrange tomato and mozzarella slices alternately on a platter.",
-            "Tuck fresh basil leaves between the slices.",
-            "Drizzle with olive oil and balsamic glaze.",
-            "Season with salt and pepper to taste.",
-            "Serve immediately."
-        ],
-        notes: "For best flavor, use ripe, in-season tomatoes and high-quality mozzarella."
-    }
-];
-
-// DOM Elements
-const recipesGrid = document.querySelector('.recipes-grid');
-const additionalRecipesGrid = document.getElementById('additional-recipes');
-const recipeModal = document.getElementById('recipeModal');
-const modalBody = document.querySelector('#recipeModal .modal-body');
-const closeModal = document.querySelector('#recipeModal .close-modal');
-const viewButtons = document.querySelectorAll('.view-recipe');
-const categoryTabs = document.querySelectorAll('.category-tab');
-const adminBtn = document.querySelector('.admin-btn');
-const adminLoginModal = document.getElementById('adminLoginModal');
-const closeAdminModal = document.getElementById('closeAdminModal');
-const adminLoginForm = document.getElementById('adminLoginForm');
-const adminPassword = document.getElementById('adminPassword');
-const errorMessage = document.getElementById('errorMessage');
-const passwordToggle = document.getElementById('passwordToggle');
-const recipeManagementModal = document.getElementById('recipeManagementModal');
-const closeManagementModal = document.getElementById('closeManagementModal');
-const logoutBtn = document.getElementById('logoutBtn');
-const addRecipeBtn = document.getElementById('addRecipeBtn');
-const manageCategoriesBtn = document.getElementById('manageCategoriesBtn');
-const viewAnalyticsBtn = document.getElementById('viewAnalyticsBtn');
-const recipeTable = document.getElementById('recipeTable').querySelector('tbody');
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    loadRecipes();
-    loadAdditionalRecipes();
-    loadRecipeTable();
-});
-
-// Load recipes into the grid
-function loadRecipes() {
-    recipesGrid.innerHTML = '';
-    recipes.forEach(recipe => {
-        const recipeCard = createRecipeCard(recipe);
-        recipesGrid.appendChild(recipeCard);
-    });
-}
-
-// Load additional recipes
-function loadAdditionalRecipes() {
-    additionalRecipesGrid.innerHTML = '';
-    additionalRecipes.forEach(recipe => {
-        const recipeCard = createRecipeCard(recipe);
-        additionalRecipesGrid.appendChild(recipeCard);
-    });
-}
-
-// Create recipe card HTML
-function createRecipeCard(recipe) {
-    const recipeCard = document.createElement('div');
-    recipeCard.className = 'recipe-card';
-    recipeCard.dataset.category = recipe.category;
-    recipeCard.dataset.id = recipe.id;
-    
-    recipeCard.innerHTML = `
-        <div class="recipe-img">
-            <img src="${recipe.image}" alt="${recipe.title}">
-            <div class="recipe-category">${recipe.category.charAt(0).toUpperCase() + recipe.category.slice(1)}</div>
-        </div>
-        <div class="recipe-content">
-            <h3>${recipe.title}</h3>
-            <p>${recipe.description}</p>
-            <div class="recipe-meta">
-                <div class="meta-item">
-                    <i class="fas fa-clock meta-icon"></i>
-                    <span>${recipe.prepTime} prep</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADILY FLAVOR - Recipe Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --amazon-orange: #FF9900;
+            --amazon-dark-blue: #232F3E;
+            --amazon-light-blue: #37475A;
+            --amazon-teal: #00A8E1;
+            --amazon-yellow: #FEBD69;
+            --amazon-green: #007600;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+            padding-bottom: 60px; /* For sticky ad */
+        }
+        
+        .heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--amazon-orange);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: var(--amazon-yellow);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amazon-yellow);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .admin-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            color: var(--amazon-yellow);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            background: var(--amazon-orange);
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+        }
+        
+        .btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover i {
+            transform: translateX(4px);
+        }
+        
+        /* Ads */
+        .ad-container {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border: 1px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .ad-label {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+        
+        .ad-content {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .ad-content p {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Categories */
+        .categories {
+            padding: 50px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--amazon-dark-blue);
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .tabs-container {
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tabs-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--amazon-orange);
+            border-radius: 10px;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            padding: 5px;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--amazon-light-blue);
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 15px;
+        }
+        
+        .category-tab:hover, .category-tab.active {
+            background: var(--amazon-orange);
+            color: white;
+            border-color: var(--amazon-orange);
+        }
+        
+        /* Recipe Cards */
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .recipe-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .recipe-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .recipe-card:hover .recipe-img img {
+            transform: scale(1.05);
+        }
+        
+        .recipe-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--amazon-yellow);
+            color: var(--amazon-dark-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .recipe-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .recipe-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--amazon-dark-blue);
+        }
+        
+        .recipe-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .meta-icon {
+            color: var(--amazon-orange);
+        }
+        
+        .view-recipe {
+            background: var(--amazon-yellow);
+            color: #111;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-recipe:hover {
+            background: #e6aa45;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--amazon-dark-blue) 0%, #1a2533 100%);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--amazon-orange);
+        }
+        
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--amazon-orange);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--amazon-yellow);
+            transform: translateX(5px);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 6px 0 0 6px;
+            font-size: 15px;
+        }
+        
+        .newsletter-form button {
+            background: var(--amazon-orange);
+            color: #111;
+            border: none;
+            padding: 0 20px;
+            font-weight: 500;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #e68a00;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Recipe Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .close-modal:hover {
+            background: var(--amazon-orange);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 40px;
+        }
+        
+        .modal-header {
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h3 {
+            font-size: 32px;
+            color: var(--amazon-dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .modal-category {
+            display: inline-block;
+            background: var(--amazon-yellow);
+            color: var(--amazon-dark-blue);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .modal-description {
+            color: #555;
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .modal-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .modal-meta div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .modal-meta i {
+            color: var(--amazon-orange);
+            font-size: 20px;
+        }
+        
+        .modal-section {
+            margin-bottom: 30px;
+        }
+        
+        .modal-section h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--amazon-dark-blue);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .modal-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--amazon-orange);
+        }
+        
+        .ingredients-list, .instructions-list {
+            padding-left: 20px;
+        }
+        
+        .ingredients-list li, .instructions-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .ingredients-list li::before, .instructions-list li::before {
+            content: '•';
+            color: var(--amazon-orange);
+            position: absolute;
+            left: -15px;
+            font-size: 20px;
+        }
+        
+        .instructions-list {
+            list-style-type: decimal;
+            padding-left: 25px;
+        }
+        
+        .instructions-list li {
+            margin-bottom: 15px;
+        }
+        
+        /* Sticky Mobile Ad */
+        .sticky-mobile-ad {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 200;
+            display: none;
+        }
+        
+        .sticky-ad-container {
+            max-width: 320px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .sticky-ad-label {
+            position: absolute;
+            top: -8px;
+            right: 5px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 8px;
+            padding: 2px 5px;
+            border-radius: 10px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 350px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .modal-body {
+                padding: 30px 20px;
+            }
+            
+            .modal-header h3 {
+                font-size: 28px;
+            }
+            
+            .sticky-mobile-ad {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                padding: 12px 0;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .recipes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
                 </div>
-                <div class="meta-item">
-                    <i class="fas fa-fire meta-icon"></i>
-                    <span>${recipe.cookTime} cook</span>
+                <h1 class="heading">ADILY FLAVOR</h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li>
+                        <button class="admin-btn">
+                            <i class="fas fa-lock"></i> Admin
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="heading">Discover Delicious Recipes</h2>
+                <p>Explore our collection of mouthwatering recipes from around the world. Cook like a pro with our easy-to-follow instructions.</p>
+                <a href="#categories" class="btn">
+                    Browse Categories <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Banner Ad -->
+    <div class="container">
+        <div class="ad-container" style="height: 100px;">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <div class="ad-content">
+                <p>Top Banner Advertisement - 970x250</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="heading">Recipe Categories</h2>
+                <p>Browse our delicious recipes by category and find your next culinary inspiration</p>
+            </div>
+            
+            <div class="tabs-container">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all">All Recipes</button>
+                    <button class="category-tab" data-category="breakfast">Breakfast</button>
+                    <button class="category-tab" data-category="lunch">Lunch</button>
+                    <button class="category-tab" data-category="dinner">Dinner</button>
+                    <button class="category-tab" data-category="dessert">Dessert</button>
+                    <button class="category-tab" data-category="appetizer">Appetizer</button>
+                    <button class="category-tab" data-category="vegetarian">Vegetarian</button>
                 </div>
             </div>
-            <button class="view-recipe" data-id="${recipe.id}">View Recipe</button>
-        </div>
-    `;
-    
-    return recipeCard;
-}
-
-// Load recipe details into modal
-function loadRecipeModal(recipeId) {
-    const allRecipes = [...recipes, ...additionalRecipes];
-    const recipe = allRecipes.find(r => r.id === recipeId);
-    
-    if (!recipe) return;
-    
-    modalBody.innerHTML = `
-        <div class="modal-header">
-            <h3 class="heading">${recipe.title}</h3>
-            <span class="modal-category">${recipe.category.charAt(0).toUpperCase() + recipe.category.slice(1)}</span>
-        </div>
-        
-        <p class="modal-description">
-            ${recipe.description}
-        </p>
-        
-        <div class="modal-meta">
-            <div>
-                <i class="fas fa-clock"></i>
-                <span>Prep Time: ${recipe.prepTime}</span>
+            
+            <div class="recipes-grid">
+                <!-- Recipe 1 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
+                        <div class="recipe-category">Dinner</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Classic Margherita Pizza</h3>
+                        <p>Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>20 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>15 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 2 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
+                        <div class="recipe-category">Dinner</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Spaghetti Bolognese</h3>
+                        <p>Classic Italian pasta with rich meat sauce, perfect for family dinners and special occasions.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>45 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 3 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
+                        <div class="recipe-category">Dessert</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Chocolate Chip Cookies</h3>
+                        <p>Soft and chewy cookies loaded with chocolate chips - the perfect sweet treat for any occasion.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>10 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
             </div>
-            <div>
-                <i class="fas fa-fire"></i>
-                <span>Cook Time: ${recipe.cookTime}</span>
+            
+            <!-- In-content Ad -->
+            <div class="ad-container" style="height: 120px;">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <div class="ad-content">
+                    <p>In-content Advertisement - 728x90</p>
+                </div>
             </div>
-            <div>
-                <i class="fas fa-user-friends"></i>
-                <span>Servings: ${recipe.servings || '2-4 people'}</span>
+            
+            <div class="recipes-grid">
+                <!-- Recipe 4 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
+                        <div class="recipe-category">Breakfast</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Avocado Toast</h3>
+                        <p>Simple, nutritious breakfast with creamy avocado on toasted artisan bread with optional toppings.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>5 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>5 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 5 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
+                        <div class="recipe-category">Vegetarian</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Vegetable Stir Fry</h3>
+                        <p>Quick and healthy vegetable stir fry with a flavorful sauce, perfect for busy weeknights.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>15 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>10 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
+                
+                <!-- Recipe 6 -->
+                <div class="recipe-card">
+                    <div class="recipe-img">
+                        <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
+                        <div class="recipe-category">Breakfast</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Berry Smoothie Bowl</h3>
+                        <p>Refreshing and nutritious smoothie bowl topped with fresh fruits and crunchy granola.</p>
+                        <div class="recipe-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock meta-icon"></i>
+                                <span>10 min prep</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-fire meta-icon"></i>
+                                <span>0 min cook</span>
+                            </div>
+                        </div>
+                        <button class="view-recipe">View Recipe</button>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="modal-section">
-            <h4>Ingredients</h4>
-            <ul class="ingredients-list">
-                ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-            </ul>
+    </section>
+
+    <!-- Bottom Banner Ad -->
+    <div class="container">
+        <div class="ad-container" style="height: 100px;">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <div class="ad-content">
+                <p>Bottom Banner Advertisement - 970x250</p>
+            </div>
         </div>
-        
-        <div class="modal-section">
-            <h4>Instructions</h4>
-            <ol class="instructions-list">
-                ${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}
-            </ol>
+    </div>
+
+    <!-- Sticky Mobile Ad -->
+    <div class="sticky-mobile-ad">
+        <div class="container">
+            <div class="sticky-ad-container">
+                <span class="sticky-ad-label">ADVERTISEMENT</span>
+                <p>Sticky Mobile Ad - 320x50</p>
+            </div>
         </div>
-        
-        ${recipe.notes ? `
-        <div class="modal-section">
-            <h4>Notes</h4>
-            <p>${recipe.notes}</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="heading">ADILY FLAVOR</h3>
+                    <p>Sharing the joy of cooking with food enthusiasts around the world. Discover, create, and share delicious recipes.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#">Popular Recipes</a></li>
+                        <li><a href="#">Cooking Tips</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="heading">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Breakfast</a></li>
+                        <li><a href="#">Lunch</a></li>
+                        <li><a href="#">Dinner</a></li>
+                        <li><a href="#">Desserts</a></li>
+                        <li><a href="#">Vegetarian</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="heading">Newsletter</h3>
+                    <p>Subscribe to get the latest recipes and cooking tips delivered to your inbox.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ADILY FLAVOR. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff9900;"></i> for food lovers</p>
+            </div>
         </div>
-        ` : ''}
-    `;
-    
-    recipeModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+    </footer>
 
-// Load recipe table for admin
-function loadRecipeTable() {
-    recipeTable.innerHTML = '';
-    const allRecipes = [...recipes, ...additionalRecipes];
-    
-    allRecipes.forEach(recipe => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${recipe.title}</td>
-            <td>${recipe.category.charAt(0).toUpperCase() + recipe.category.slice(1)}</td>
-            <td>${recipe.prepTime}</td>
-            <td>${recipe.cookTime}</td>
-            <td>
-                <button class="action-btn edit-btn" data-id="${recipe.id}">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <button class="action-btn delete-btn" data-id="${recipe.id}">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        `;
-        recipeTable.appendChild(row);
-    });
-}
+    <!-- Recipe Detail Modal -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <div class="close-modal">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h3 class="heading">Classic Margherita Pizza</h3>
+                    <span class="modal-category">Dinner</span>
+                </div>
+                
+                <p class="modal-description">
+                    Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust. This simple yet delicious recipe brings the taste of Italy to your kitchen.
+                </p>
+                
+                <div class="modal-meta">
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span>Prep Time: 20 minutes</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-fire"></i>
+                        <span>Cook Time: 15 minutes</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-user-friends"></i>
+                        <span>Servings: 2-3 people</span>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Ingredients</h4>
+                    <ul class="ingredients-list">
+                        <li>1 pizza dough ball</li>
+                        <li>3 tbsp tomato sauce</li>
+                        <li>125g fresh mozzarella cheese</li>
+                        <li>Fresh basil leaves</li>
+                        <li>2 tbsp olive oil</li>
+                        <li>Salt and pepper to taste</li>
+                        <li>1 tsp dried oregano</li>
+                        <li>1 clove garlic, minced</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Instructions</h4>
+                    <ol class="instructions-list">
+                        <li>Preheat your oven to 475°F (245°C) with a pizza stone or steel if you have one.</li>
+                        <li>Roll out the pizza dough on a floured surface to your desired thickness.</li>
+                        <li>Spread tomato sauce evenly over the dough, leaving a small border for the crust.</li>
+                        <li>Tear the mozzarella into pieces and distribute evenly over the sauce.</li>
+                        <li>Sprinkle minced garlic and oregano over the cheese.</li>
+                        <li>Bake for 12-15 minutes until the crust is golden and the cheese is bubbly.</li>
+                        <li>Remove from oven, top with fresh basil leaves, drizzle with olive oil, and season with salt and pepper.</li>
+                        <li>Slice and serve immediately.</li>
+                    </ol>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Notes</h4>
+                    <p>For best results, use high-quality ingredients. Fresh mozzarella makes a significant difference. If you like a crispier crust, pre-bake the dough for 3-4 minutes before adding toppings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-// Filter recipes by category
-function filterRecipes(category) {
-    const allRecipeCards = document.querySelectorAll('.recipe-card');
-    let hasVisibleRecipes = false;
-    
-    allRecipeCards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-            card.style.display = 'flex';
-            hasVisibleRecipes = true;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-    
-    // Show/hide "no recipes" message
-    const noRecipesMessage = document.querySelector('.no-recipes-message');
-    if (!hasVisibleRecipes) {
-        if (!noRecipesMessage) {
-            const message = document.createElement('div');
-            message.className = 'no-recipes-message';
-            message.innerHTML = `
-                <i class="fas fa-utensils"></i>
-                <h3>No recipes found in this category</h3>
-                <p>Try selecting another category or check back later for new recipes!</p>
-            `;
-            recipesGrid.appendChild(message);
-        }
-    } else {
-        if (noRecipesMessage) {
-            noRecipesMessage.remove();
-        }
-    }
-}
+    <!-- Ad Scripts -->
+    <script type='text/javascript' src='//pl26920862.profitableratecpm.com/cb/a8/40/cba840d68e70db1debf5d3f4636121d5.js'></script>
+    <script async="async" data-cfasync="false" src="//pl26974695.profitableratecpm.com/daa6b9cb6f4408986b0b8175f29f778b/invoke.js"></script>
+    <div id="container-daa6b9cb6f4408986b0b8175f29f778b"></div>
 
-// Show message function
-function showMessage(message, type) {
-    const messageEl = document.createElement('div');
-    messageEl.textContent = message;
-    messageEl.style.position = 'fixed';
-    messageEl.style.top = '20px';
-    messageEl.style.right = '20px';
-    messageEl.style.padding = '15px 25px';
-    messageEl.style.borderRadius = '8px';
-    messageEl.style.color = 'white';
-    messageEl.style.zIndex = '2000';
-    messageEl.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-    messageEl.style.opacity = '0';
-    messageEl.style.transform = 'translateY(-20px)';
-    messageEl.style.transition = 'all 0.3s ease';
-    
-    if (type === 'success') {
-        messageEl.style.background = '#2ecc71';
-    } else {
-        messageEl.style.background = '#e74c3c';
-    }
-    
-    document.body.appendChild(messageEl);
-    
-    // Animate in
-    setTimeout(() => {
-        messageEl.style.opacity = '1';
-        messageEl.style.transform = 'translateY(0)';
-    }, 10);
-    
-    // Remove after delay
-    setTimeout(() => {
-        messageEl.style.opacity = '0';
-        messageEl.style.transform = 'translateY(-20px)';
-        setTimeout(() => {
-            document.body.removeChild(messageEl);
-        }, 300);
-    }, 3000);
-}
-
-// Event Listeners
-
-// View recipe buttons
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('view-recipe')) {
-        const recipeId = parseInt(e.target.dataset.id);
-        loadRecipeModal(recipeId);
-    }
-});
-
-// Close recipe modal
-closeModal.addEventListener('click', () => {
-    recipeModal.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-// Category tabs
-categoryTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        // Remove active class from all tabs
-        categoryTabs.forEach(t => t.classList.remove('active'));
+    <script>
+        // Toggle recipe modal
+        const modal = document.getElementById('recipeModal');
+        const viewButtons = document.querySelectorAll('.view-recipe');
+        const closeModal = document.querySelector('.close-modal');
         
-        // Add active class to clicked tab
-        tab.classList.add('active');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
         
-        // Filter recipes
-        filterRecipes(tab.dataset.category);
-    });
-});
-
-// Admin login button
-adminBtn.addEventListener('click', () => {
-    adminLoginModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    adminPassword.focus();
-});
-
-// Close admin login modal
-closeAdminModal.addEventListener('click', () => {
-    adminLoginModal.classList.remove('active');
-    document.body.style.overflow = '';
-    resetForm();
-});
-
-// Close recipe management modal
-closeManagementModal.addEventListener('click', () => {
-    recipeManagementModal.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-// Logout functionality
-logoutBtn.addEventListener('click', () => {
-    recipeManagementModal.classList.remove('active');
-    showMessage('Successfully logged out', 'success');
-});
-
-// Toggle password visibility
-passwordToggle.addEventListener('click', () => {
-    const type = adminPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-    adminPassword.setAttribute('type', type);
-    passwordToggle.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-});
-
-// Handle admin login form submission
-adminLoginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Correct password
-    const correctPassword = "8200@8200@";
-    
-    if (adminPassword.value === correctPassword) {
-        // Close login modal
-        adminLoginModal.classList.remove('active');
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
         
-        // Show success message
-        showMessage('Login successful! Redirecting to recipe management...', 'success');
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
         
-        // After a short delay, show recipe management
-        setTimeout(() => {
-            recipeManagementModal.classList.add('active');
-            resetForm();
-        }, 1500);
-    } else {
-        // Show error
-        errorMessage.style.display = 'block';
-        adminPassword.style.borderColor = '#e74c3c';
+        // Category tabs functionality
+        const categoryTabs = document.querySelectorAll('.category-tab');
         
-        // Shake animation for error feedback
-        adminLoginForm.classList.add('shake');
-        setTimeout(() => {
-            adminLoginForm.classList.remove('shake');
-        }, 500);
-    }
-});
-
-// Add recipe button
-addRecipeBtn.addEventListener('click', () => {
-    showMessage('Add new recipe form would open here', 'success');
-});
-
-// Manage categories button
-manageCategoriesBtn.addEventListener('click', () => {
-    showMessage('Category management interface would open here', 'success');
-});
-
-// View analytics button
-viewAnalyticsBtn.addEventListener('click', () => {
-    showMessage('Analytics dashboard would open here', 'success');
-});
-
-// Edit and delete buttons in recipe table
-recipeTable.addEventListener('click', (e) => {
-    if (e.target.classList.contains('edit-btn') || e.target.closest('.edit-btn')) {
-        const btn = e.target.classList.contains('edit-btn') ? e.target : e.target.closest('.edit-btn');
-        const recipeId = parseInt(btn.dataset.id);
-        showMessage(`Edit recipe with ID: ${recipeId}`, 'success');
-    }
-    
-    if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
-        const btn = e.target.classList.contains('delete-btn') ? e.target : e.target.closest('.delete-btn');
-        const recipeId = parseInt(btn.dataset.id);
-        showMessage(`Delete recipe with ID: ${recipeId} (confirmation dialog would appear)`, 'success');
-    }
-});
-
-// Close modals when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === recipeModal) {
-        recipeModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    if (e.target === adminLoginModal) {
-        adminLoginModal.classList.remove('active');
-        document.body.style.overflow = '';
-        resetForm();
-    }
-    if (e.target === recipeManagementModal) {
-        recipeManagementModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
-
-// Reset form function
-function resetForm() {
-    adminLoginForm.reset();
-    errorMessage.style.display = 'none';
-    adminPassword.style.borderColor = '#e0e0e0';
-    adminPassword.setAttribute('type', 'password');
-    passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
-}
-
-// Initialize with all recipes
-filterRecipes('all');
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Here would be code to filter recipes by category
+                // For this demo, we'll just simulate the action
+                console.log(`Showing recipes for: ${tab.dataset.category}`);
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Admin button functionality
+        const adminBtn = document.querySelector('.admin-btn');
+        
+        adminBtn.addEventListener('click', () => {
+            alert('Admin login modal would open here. This would allow access to recipe management.');
+        });
+        
+        // Responsive menu for mobile
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) {
+                document.querySelector('nav ul').style.display = 'flex';
+            } else {
+                document.querySelector('nav ul').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
