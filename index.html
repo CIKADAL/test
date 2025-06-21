@@ -27,8 +27,6 @@
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
-            position: relative;
-            padding-bottom: 60px; /* For sticky ad */
         }
         
         .heading {
@@ -669,35 +667,19 @@
         
         /* Sticky Mobile Ad */
         .sticky-mobile-ad {
-            position: fixed;
+            position: sticky;
             bottom: 0;
-            left: 0;
-            width: 100%;
+            z-index: 99;
             background: white;
             padding: 10px 0;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 200;
             display: none;
         }
         
-        .sticky-ad-container {
-            max-width: 320px;
-            margin: 0 auto;
-            background: #f0f0f0;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .sticky-ad-label {
-            position: absolute;
-            top: -8px;
-            right: 5px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            font-size: 8px;
-            padding: 2px 5px;
-            border-radius: 10px;
+        @media (max-width: 768px) {
+            .sticky-mobile-ad {
+                display: block;
+            }
         }
         
         /* Responsive Design */
@@ -716,6 +698,13 @@
             
             .mobile-menu-btn {
                 display: block;
+            }
+            
+            /* Adjust ad sizes */
+            .top-banner-ad .ad-content img,
+            .bottom-banner-ad .ad-content img {
+                width: 100%;
+                height: auto;
             }
         }
         
@@ -744,8 +733,10 @@
                 font-size: 28px;
             }
             
-            .sticky-mobile-ad {
-                display: block;
+            /* Hide large ads on tablet */
+            .top-banner-ad,
+            .bottom-banner-ad {
+                display: none;
             }
         }
         
@@ -783,6 +774,40 @@
                 flex-direction: column;
                 gap: 15px;
             }
+            
+            /* Hide large ads on mobile */
+            .in-content-ad {
+                display: none;
+            }
+        }
+        
+        /* Ad specific styling */
+        .top-banner-ad {
+            height: 250px;
+            width: 970px;
+            margin: 20px auto;
+        }
+        
+        .in-content-ad {
+            height: 90px;
+            width: 728px;
+            margin: 20px auto;
+        }
+        
+        .bottom-banner-ad {
+            height: 250px;
+            width: 970px;
+            margin: 20px auto;
+        }
+        
+        .sticky-mobile-ad .ad-container {
+            height: 70px;
+            width: 320px;
+            margin: 0 auto;
+        }
+        
+        .ad-content img {
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -832,10 +857,15 @@
 
     <!-- Top Banner Ad -->
     <div class="container">
-        <div class="ad-container" style="height: 100px;">
+        <div class="ad-container top-banner-ad">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
-                <p>Top Banner Advertisement - 970x250</p>
+                <a href="https://example.com/ad1" target="_blank">
+                    <img src="https://via.placeholder.com/970x250/FF9900/FFFFFF?text=Top+Banner+Ad+970x250" 
+                         alt="Top Banner Advertisement" 
+                         width="970" 
+                         height="250">
+                </a>
             </div>
         </div>
     </div>
@@ -932,10 +962,15 @@
             </div>
             
             <!-- In-content Ad -->
-            <div class="ad-container" style="height: 120px;">
+            <div class="ad-container in-content-ad">
                 <span class="ad-label">ADVERTISEMENT</span>
                 <div class="ad-content">
-                    <p>In-content Advertisement - 728x90</p>
+                    <a href="https://example.com/ad2" target="_blank">
+                        <img src="https://via.placeholder.com/728x90/00A8E1/FFFFFF?text=In-content+Ad+728x90" 
+                             alt="In-content Advertisement" 
+                             width="728" 
+                             height="90">
+                    </a>
                 </div>
             </div>
             
@@ -1014,10 +1049,15 @@
 
     <!-- Bottom Banner Ad -->
     <div class="container">
-        <div class="ad-container" style="height: 100px;">
+        <div class="ad-container bottom-banner-ad">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
-                <p>Bottom Banner Advertisement - 970x250</p>
+                <a href="https://example.com/ad3" target="_blank">
+                    <img src="https://via.placeholder.com/970x250/007600/FFFFFF?text=Bottom+Banner+Ad+970x250" 
+                         alt="Bottom Banner Advertisement" 
+                         width="970" 
+                         height="250">
+                </a>
             </div>
         </div>
     </div>
@@ -1025,9 +1065,11 @@
     <!-- Sticky Mobile Ad -->
     <div class="sticky-mobile-ad">
         <div class="container">
-            <div class="sticky-ad-container">
-                <span class="sticky-ad-label">ADVERTISEMENT</span>
-                <p>Sticky Mobile Ad - 320x50</p>
+            <div class="ad-container">
+                <span class="ad-label">ADVERTISEMENT</span>
+                <div class="ad-content">
+                    <p>Sticky Mobile Ad - 320x50</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1152,11 +1194,6 @@
         </div>
     </div>
 
-    <!-- Ad Scripts -->
-    <script type='text/javascript' src='//pl26920862.profitableratecpm.com/cb/a8/40/cba840d68e70db1debf5d3f4636121d5.js'></script>
-    <script async="async" data-cfasync="false" src="//pl26974695.profitableratecpm.com/daa6b9cb6f4408986b0b8175f29f778b/invoke.js"></script>
-    <div id="container-daa6b9cb6f4408986b0b8175f29f778b"></div>
-
     <script>
         // Toggle recipe modal
         const modal = document.getElementById('recipeModal');
@@ -1183,6 +1220,14 @@
             }
         });
         
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
         // Category tabs functionality
         const categoryTabs = document.querySelectorAll('.category-tab');
         
@@ -1202,10 +1247,10 @@
         
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
         
         mobileMenuBtn.addEventListener('click', () => {
-            const nav = document.querySelector('nav ul');
-            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
         });
         
         // Admin button functionality
@@ -1215,13 +1260,18 @@
             alert('Admin login modal would open here. This would allow access to recipe management.');
         });
         
-        // Responsive menu for mobile
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 992) {
-                document.querySelector('nav ul').style.display = 'flex';
-            } else {
-                document.querySelector('nav ul').style.display = 'none';
-            }
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
