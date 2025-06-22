@@ -133,6 +133,34 @@
             cursor: pointer;
         }
         
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            margin-left: 20px;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        .search-container input {
+            padding: 10px 15px;
+            border-radius: 30px 0 0 30px;
+            border: none;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        .search-container button {
+            background: var(--amazon-orange);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            padding: 0 20px;
+            cursor: pointer;
+            color: #111;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        .search-container button:hover {
+            background: #e68a00;
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
@@ -195,8 +223,8 @@
         
         /* Ads */
         .ad-container {
-            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
-            border: 1px dashed #ccc;
+            background: #ffffff;
+            border: 2px solid var(--amazon-orange);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -204,13 +232,14 @@
             overflow: hidden;
             position: relative;
             margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(255, 153, 0, 0.2);
         }
         
         .ad-label {
             position: absolute;
             top: 8px;
             right: 8px;
-            background: rgba(0,0,0,0.6);
+            background: var(--amazon-orange);
             color: white;
             font-size: 10px;
             padding: 3px 8px;
@@ -332,6 +361,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
+            /* Added lazy loading */
+            loading: lazy;
         }
         
         .recipe-card:hover .recipe-img img {
@@ -365,8 +396,26 @@
         
         .recipe-content p {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-grow: 1;
+        }
+        
+        /* Recipe Rating */
+        .recipe-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--amazon-orange);
+            font-size: 14px;
+            gap: 5px;
+        }
+        .recipe-rating i {
+            font-size: 15px;
+        }
+        .recipe-rating span {
+            color: #777;
+            margin-left: 5px;
+            font-size: 13px;
         }
         
         .recipe-meta {
@@ -672,117 +721,6 @@
             margin-bottom: 15px;
         }
         
-        /* Admin Modal Styles */
-        .admin-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 20px;
-        }
-        
-        .admin-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .admin-modal-content {
-            background: white;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 450px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        
-        .admin-modal-header {
-            background: var(--amazon-dark-blue);
-            color: white;
-            padding: 20px;
-            border-radius: 12px 12px 0 0;
-            text-align: center;
-        }
-        
-        .admin-modal-header h3 {
-            font-size: 24px;
-        }
-        
-        .admin-modal-body {
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--amazon-dark-blue);
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus {
-            border-color: var(--amazon-orange);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
-        }
-        
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--amazon-orange);
-            color: #111;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        
-        .login-btn:hover {
-            background: #e68a00;
-            transform: translateY(-2px);
-        }
-        
-        .forgot-password {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .forgot-password a {
-            color: var(--amazon-teal);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .forgot-password a:hover {
-            color: var(--amazon-dark-blue);
-            text-decoration: underline;
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero {
@@ -800,9 +738,34 @@
             .mobile-menu-btn {
                 display: block;
             }
+            
+            /* Mobile Menu */
+            nav ul.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--amazon-dark-blue);
+                padding: 20px;
+                gap: 15px;
+                z-index: 99;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            }
+            
+            .search-container {
+                margin: 15px 0;
+                max-width: 100%;
+                order: 3;
+            }
         }
         
         @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
             .hero {
                 height: 350px;
             }
@@ -883,15 +846,60 @@
             }
         }
         
+        /* Ad Fallback */
         .ad-fallback {
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f8f9fa;
-            color: #6c757d;
-            font-weight: 500;
+            background: linear-gradient(135deg, #ffe4b3 0%, #ffcc66 100%);
+            border: 1px solid var(--amazon-orange);
+            color: var(--amazon-dark-blue);
+            font-weight: 600;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        /* Featured Section */
+        .featured-section {
+            background: linear-gradient(to right, var(--amazon-dark-blue), var(--amazon-light-blue));
+            padding: 50px 0;
+            color: white;
+        }
+        
+        .featured-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .featured-text {
+            flex: 1;
+        }
+        
+        .featured-image {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .featured-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .featured-content {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -904,6 +912,12 @@
                     <i class="fas fa-utensils"></i>
                 </div>
                 <h1 class="heading">ADILY FLAVOR</h1>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" placeholder="Search recipes...">
+                <button type="submit"><i class="fas fa-search"></i></button>
             </div>
             
             <nav>
@@ -939,15 +953,32 @@
         </div>
     </section>
 
-    <!-- Top Banner Ad (970x250) -->
+    <!-- Top Banner Ad -->
     <div class="container">
         <div class="ad-container" style="height: 250px;">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
-                <div class="ad-fallback">Delicious Kitchen Tools Ad</div>
+                <div class="ad-fallback">Special Offer: Get 20% off on premium cooking tools!</div>
             </div>
         </div>
     </div>
+
+    <!-- Featured Recipe Section -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="featured-content">
+                <div class="featured-text">
+                    <h2 class="heading">Featured Recipe of the Week</h2>
+                    <h3>Mediterranean Stuffed Bell Peppers</h3>
+                    <p>A delicious and healthy recipe packed with quinoa, chickpeas, and Mediterranean flavors. Perfect for a nutritious dinner that's ready in under 40 minutes.</p>
+                    <button class="btn" style="margin-top: 20px;">View Recipe</button>
+                </div>
+                <div class="featured-image">
+                    <img src="https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mediterranean Stuffed Bell Peppers">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Categories Section -->
     <section id="categories" class="categories">
@@ -973,12 +1004,22 @@
                 <!-- Recipe 1 -->
                 <div class="recipe-card">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
+                        <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza" loading="lazy">
                         <div class="recipe-category">Dinner</div>
                     </div>
                     <div class="recipe-content">
                         <h3>Classic Margherita Pizza</h3>
                         <p>Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust.</p>
+                        
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(24 reviews)</span>
+                        </div>
+                        
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -996,12 +1037,22 @@
                 <!-- Recipe 2 -->
                 <div class="recipe-card">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
+                        <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese" loading="lazy">
                         <div class="recipe-category">Dinner</div>
                     </div>
                     <div class="recipe-content">
                         <h3>Spaghetti Bolognese</h3>
                         <p>Classic Italian pasta with rich meat sauce, perfect for family dinners and special occasions.</p>
+                        
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(18 reviews)</span>
+                        </div>
+                        
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -1019,12 +1070,22 @@
                 <!-- Recipe 3 -->
                 <div class="recipe-card">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
+                        <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies" loading="lazy">
                         <div class="recipe-category">Dessert</div>
                     </div>
                     <div class="recipe-content">
                         <h3>Chocolate Chip Cookies</h3>
                         <p>Soft and chewy cookies loaded with chocolate chips - the perfect sweet treat for any occasion.</p>
+                        
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(32 reviews)</span>
+                        </div>
+                        
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -1040,11 +1101,11 @@
                 </div>
             </div>
             
-            <!-- In-content Ad (728x90) -->
+            <!-- In-content Ad -->
             <div class="ad-container" style="height: 90px;">
                 <span class="ad-label">ADVERTISEMENT</span>
                 <div class="ad-content">
-                    <div class="ad-fallback">Premium Cooking Ingredients Ad</div>
+                    <div class="ad-fallback">Try our premium recipe subscription - 30% off first month!</div>
                 </div>
             </div>
             
@@ -1052,12 +1113,22 @@
                 <!-- Recipe 4 -->
                 <div class="recipe-card">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
+                        <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast" loading="lazy">
                         <div class="recipe-category">Breakfast</div>
                     </div>
                     <div class="recipe-content">
                         <h3>Avocado Toast</h3>
                         <p>Simple, nutritious breakfast with creamy avocado on toasted artisan bread with optional toppings.</p>
+                        
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(15 reviews)</span>
+                        </div>
+                        
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -1075,12 +1146,22 @@
                 <!-- Recipe 5 -->
                 <div class="recipe-card">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
+                        <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry" loading="lazy">
                         <div class="recipe-category">Vegetarian</div>
                     </div>
                     <div class="recipe-content">
                         <h3>Vegetable Stir Fry</h3>
                         <p>Quick and healthy vegetable stir fry with a flavorful sauce, perfect for busy weeknights.</p>
+                        
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(21 reviews)</span>
+                        </div>
+                        
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -1098,12 +1179,22 @@
                 <!-- Recipe 6 -->
                 <div class="recipe-card">
                     <div class="recipe-img">
-                        <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
+                        <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl" loading="lazy">
                         <div class="recipe-category">Breakfast</div>
                     </div>
                     <div class="recipe-content">
                         <h3>Berry Smoothie Bowl</h3>
                         <p>Refreshing and nutritious smoothie bowl topped with fresh fruits and crunchy granola.</p>
+                        
+                        <div class="recipe-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(28 reviews)</span>
+                        </div>
+                        
                         <div class="recipe-meta">
                             <div class="meta-item">
                                 <i class="fas fa-clock meta-icon"></i>
@@ -1121,23 +1212,23 @@
         </div>
     </section>
 
-    <!-- Bottom Banner Ad (970x250) -->
+    <!-- Bottom Banner Ad -->
     <div class="container">
         <div class="ad-container" style="height: 250px;">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
-                <div class="ad-fallback">Gourmet Recipe Book Ad</div>
+                <div class="ad-fallback">Premium Cookware Sale - Limited Time Offer!</div>
             </div>
         </div>
     </div>
 
-    <!-- Sticky Mobile Ad (320x50) -->
+    <!-- Sticky Mobile Ad -->
     <div class="sticky-mobile-ad">
         <div class="container">
             <div class="ad-container" style="height: 50px;">
                 <span class="ad-label">ADVERTISEMENT</span>
                 <div class="ad-content">
-                    <div class="ad-fallback">Get Cooking App</div>
+                    <div class="ad-fallback">Download our app for exclusive recipes!</div>
                 </div>
             </div>
         </div>
@@ -1262,37 +1353,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Admin Login Modal -->
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-modal-content">
-            <div class="close-admin-modal">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="admin-modal-header">
-                <h3 class="heading">Admin Login</h3>
-            </div>
-            <div class="admin-modal-body">
-                <form id="adminLoginForm">
-                    <div class="form-group">
-                        <label for="adminEmail">Email Address</label>
-                        <input type="email" id="adminEmail" name="email" required placeholder="admin@example.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="adminPassword">Password</label>
-                        <input type="password" id="adminPassword" name="password" required placeholder="••••••••">
-                    </div>
-                    
-                    <button type="submit" class="login-btn">Login</button>
-                    
-                    <div class="forgot-password">
-                        <a href="#">Forgot your password?</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Toggle recipe modal
@@ -1322,6 +1382,7 @@
         
         // Category tabs functionality
         const categoryTabs = document.querySelectorAll('.category-tab');
+        const recipeCards = document.querySelectorAll('.recipe-card');
         
         categoryTabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -1331,62 +1392,74 @@
                 // Add active class to clicked tab
                 tab.classList.add('active');
                 
-                // Here would be code to filter recipes by category
-                // For this demo, we'll just simulate the action
-                console.log(`Showing recipes for: ${tab.dataset.category}`);
+                const category = tab.dataset.category;
+                
+                // Filter recipes
+                recipeCards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const cardCategory = card.querySelector('.recipe-category').textContent.toLowerCase();
+                        if (cardCategory === category) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
             });
         });
         
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
         
         mobileMenuBtn.addEventListener('click', () => {
-            alert('Mobile menu would open here. In a full implementation, this would show the navigation menu.');
+            navMenu.classList.toggle('mobile-active');
         });
         
-        // Admin modal functionality
-        const adminModal = document.getElementById('adminModal');
-        const adminBtn = document.querySelector('.admin-btn');
-        const closeAdminModal = document.querySelector('.close-admin-modal');
-        
-        adminBtn.addEventListener('click', () => {
-            adminModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeAdminModal.addEventListener('click', () => {
-            adminModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === adminModal) {
-                adminModal.classList.remove('active');
-                document.body.style.overflow = '';
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && !e.target.closest('.mobile-menu-btn') && navMenu.classList.contains('mobile-active')) {
+                navMenu.classList.remove('mobile-active');
             }
         });
         
-        // Form submission handling
-        const loginForm = document.getElementById('adminLoginForm');
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('adminEmail').value;
-            const password = document.getElementById('adminPassword').value;
-            
-            // In a real application, this would send to a server
-            // For demo purposes, we'll just show an alert
-            alert(`Login attempt with:\nEmail: ${email}\nPassword: ${password}\n\nThis would authenticate with a server in a real application.`);
-            
-            // Reset form and close modal
-            loginForm.reset();
-            adminModal.classList.remove('active');
-            document.body.style.overflow = '';
+        // Admin button functionality
+        const adminBtn = document.querySelector('.admin-btn');
+        
+        adminBtn.addEventListener('click', () => {
+            alert('Admin login modal would open here. This would allow access to recipe management.');
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-container input');
+        const searchButton = document.querySelector('.search-container button');
+        
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            if (searchTerm !== '') {
+                recipeCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    if (title.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        }
+        
+        // Reset search when clicking "All Recipes"
+        document.querySelector('[data-category="all"]').addEventListener('click', () => {
+            searchInput.value = '';
+            recipeCards.forEach(card => card.style.display = 'flex');
         });
     </script>
-
-    <!-- Added the requested scripts -->
-    <script type='text/javascript' src='//pl26920862.profitableratecpm.com/cb/a8/40/cba840d68e70db1debf5d3f4636121d5.js'></script>
-    <script type='text/javascript' src='//pl26978641.profitableratecpm.com/ac/ae/4a/acae4ad92384de28ef866bcfd14cc222.js'></script>
 </body>
 </html>
