@@ -27,7 +27,6 @@
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
         }
         
         .heading {
@@ -673,137 +672,115 @@
             margin-bottom: 15px;
         }
         
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100%;
-            background: var(--amazon-dark-blue);
-            z-index: 200;
-            transition: right 0.3s ease;
-            padding: 20px;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu ul {
-            list-style: none;
-            margin-top: 40px;
-        }
-        
-        .mobile-menu li {
-            margin-bottom: 20px;
-        }
-        
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-            padding: 10px 0;
-        }
-        
-        .mobile-menu .admin-btn {
-            color: white;
-            background: transparent;
-            border: none;
-            text-align: left;
-            width: 100%;
-            padding: 10px 0;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        
-        .mobile-menu .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .mobile-menu-overlay {
+        /* Admin Modal Styles */
+        .admin-modal {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 199;
-            display: none;
-        }
-        
-        .mobile-menu-overlay.active {
-            display: block;
-        }
-        
-        /* Admin Modal Styles */
-        .admin-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            z-index: 1001;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-            display: none;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
         }
         
         .admin-modal.active {
-            display: block;
+            opacity: 1;
+            pointer-events: all;
         }
         
-        .admin-modal h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--amazon-dark-blue);
+        .admin-modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .admin-modal-header {
+            background: var(--amazon-dark-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
             text-align: center;
         }
         
-        .admin-form .form-group {
+        .admin-modal-header h3 {
+            font-size: 24px;
+        }
+        
+        .admin-modal-body {
+            padding: 30px;
+        }
+        
+        .form-group {
             margin-bottom: 20px;
         }
         
-        .admin-form label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: var(--amazon-dark-blue);
         }
         
-        .admin-form input {
+        .form-group input {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 16px;
+            transition: all 0.3s ease;
         }
         
-        .admin-form .btn {
+        .form-group input:focus {
+            border-color: var(--amazon-orange);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
+        }
+        
+        .login-btn {
             width: 100%;
+            padding: 14px;
+            background: var(--amazon-orange);
+            color: #111;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             margin-top: 10px;
         }
         
-        .admin-modal .close-admin {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: #777;
+        .login-btn:hover {
+            background: #e68a00;
+            transform: translateY(-2px);
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .forgot-password a {
+            color: var(--amazon-teal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .forgot-password a:hover {
+            color: var(--amazon-dark-blue);
+            text-decoration: underline;
         }
         
         /* Responsive Design */
@@ -916,20 +893,6 @@
             color: #6c757d;
             font-weight: 500;
         }
-        
-        /* Animation Effects */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animated {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        .recipe-card {
-            animation-delay: calc(var(--i) * 0.1s);
-        }
     </style>
 </head>
 <body>
@@ -963,44 +926,6 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay"></div>
-    <div class="mobile-menu">
-        <button class="close-menu">
-            <i class="fas fa-times"></i>
-        </button>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li>
-                <button class="admin-btn">
-                    <i class="fas fa-lock"></i> Admin Login
-                </button>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div class="admin-modal">
-        <button class="close-admin">
-            <i class="fas fa-times"></i>
-        </button>
-        <h3 class="heading">Admin Login</h3>
-        <form class="admin-form">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit" class="btn">Login</button>
-        </form>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -1014,12 +939,12 @@
         </div>
     </section>
 
-    <!-- Top Banner Ad -->
+    <!-- Top Banner Ad (970x250) -->
     <div class="container">
         <div class="ad-container" style="height: 250px;">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
-                <div class="ad-fallback">Top Banner Advertisement</div>
+                <div class="ad-fallback">Delicious Kitchen Tools Ad</div>
             </div>
         </div>
     </div>
@@ -1046,7 +971,7 @@
             
             <div class="recipes-grid">
                 <!-- Recipe 1 -->
-                <div class="recipe-card animated" data-recipe="margherita" data-category="dinner" style="--i:0">
+                <div class="recipe-card">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Classic Margherita Pizza">
                         <div class="recipe-category">Dinner</div>
@@ -1069,7 +994,7 @@
                 </div>
                 
                 <!-- Recipe 2 -->
-                <div class="recipe-card animated" data-recipe="bolognese" data-category="dinner" style="--i:1">
+                <div class="recipe-card">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Spaghetti Bolognese">
                         <div class="recipe-category">Dinner</div>
@@ -1092,7 +1017,7 @@
                 </div>
                 
                 <!-- Recipe 3 -->
-                <div class="recipe-card animated" data-recipe="cookies" data-category="dessert" style="--i:2">
+                <div class="recipe-card">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chocolate Chip Cookies">
                         <div class="recipe-category">Dessert</div>
@@ -1115,17 +1040,17 @@
                 </div>
             </div>
             
-            <!-- In-content Ad -->
+            <!-- In-content Ad (728x90) -->
             <div class="ad-container" style="height: 90px;">
                 <span class="ad-label">ADVERTISEMENT</span>
                 <div class="ad-content">
-                    <div class="ad-fallback">In-content Advertisement</div>
+                    <div class="ad-fallback">Premium Cooking Ingredients Ad</div>
                 </div>
             </div>
             
             <div class="recipes-grid">
                 <!-- Recipe 4 -->
-                <div class="recipe-card animated" data-recipe="avocado-toast" data-category="breakfast" style="--i:3">
+                <div class="recipe-card">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1030973/pexels-photo-1030973.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Avocado Toast">
                         <div class="recipe-category">Breakfast</div>
@@ -1148,7 +1073,7 @@
                 </div>
                 
                 <!-- Recipe 5 -->
-                <div class="recipe-card animated" data-recipe="stir-fry" data-category="vegetarian" style="--i:4">
+                <div class="recipe-card">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vegetable Stir Fry">
                         <div class="recipe-category">Vegetarian</div>
@@ -1171,7 +1096,7 @@
                 </div>
                 
                 <!-- Recipe 6 -->
-                <div class="recipe-card animated" data-recipe="smoothie" data-category="breakfast" style="--i:5">
+                <div class="recipe-card">
                     <div class="recipe-img">
                         <img src="https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Berry Smoothie Bowl">
                         <div class="recipe-category">Breakfast</div>
@@ -1196,23 +1121,23 @@
         </div>
     </section>
 
-    <!-- Bottom Banner Ad -->
+    <!-- Bottom Banner Ad (970x250) -->
     <div class="container">
         <div class="ad-container" style="height: 250px;">
             <span class="ad-label">ADVERTISEMENT</span>
             <div class="ad-content">
-                <div class="ad-fallback">Bottom Banner Advertisement</div>
+                <div class="ad-fallback">Gourmet Recipe Book Ad</div>
             </div>
         </div>
     </div>
 
-    <!-- Sticky Mobile Ad -->
+    <!-- Sticky Mobile Ad (320x50) -->
     <div class="sticky-mobile-ad">
         <div class="container">
             <div class="ad-container" style="height: 50px;">
                 <span class="ad-label">ADVERTISEMENT</span>
                 <div class="ad-content">
-                    <div class="ad-fallback">Sticky Mobile Ad</div>
+                    <div class="ad-fallback">Get Cooking App</div>
                 </div>
             </div>
         </div>
@@ -1337,242 +1262,50 @@
             </div>
         </div>
     </div>
+    
+    <!-- Admin Login Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-modal-content">
+            <div class="close-admin-modal">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="admin-modal-header">
+                <h3 class="heading">Admin Login</h3>
+            </div>
+            <div class="admin-modal-body">
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminEmail">Email Address</label>
+                        <input type="email" id="adminEmail" name="email" required placeholder="admin@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" name="password" required placeholder="••••••••">
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Login</button>
+                    
+                    <div class="forgot-password">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Recipe data
-        const recipeData = {
-            "margherita": {
-                title: "Classic Margherita Pizza",
-                category: "Dinner",
-                description: "Authentic Italian pizza with fresh mozzarella, basil, and tomato sauce on a thin crust. This simple yet delicious recipe brings the taste of Italy to your kitchen.",
-                prepTime: "20 min prep",
-                cookTime: "15 min cook",
-                servings: "2-3 people",
-                ingredients: [
-                    "1 pizza dough ball",
-                    "3 tbsp tomato sauce",
-                    "125g fresh mozzarella cheese",
-                    "Fresh basil leaves",
-                    "2 tbsp olive oil",
-                    "Salt and pepper to taste",
-                    "1 tsp dried oregano",
-                    "1 clove garlic, minced"
-                ],
-                instructions: [
-                    "Preheat your oven to 475°F (245°C) with a pizza stone or steel if you have one.",
-                    "Roll out the pizza dough on a floured surface to your desired thickness.",
-                    "Spread tomato sauce evenly over the dough, leaving a small border for the crust.",
-                    "Tear the mozzarella into pieces and distribute evenly over the sauce.",
-                    "Sprinkle minced garlic and oregano over the cheese.",
-                    "Bake for 12-15 minutes until the crust is golden and the cheese is bubbly.",
-                    "Remove from oven, top with fresh basil leaves, drizzle with olive oil, and season with salt and pepper.",
-                    "Slice and serve immediately."
-                ],
-                notes: "For best results, use high-quality ingredients. Fresh mozzarella makes a significant difference. If you like a crispier crust, pre-bake the dough for 3-4 minutes before adding toppings."
-            },
-            "bolognese": {
-                title: "Spaghetti Bolognese",
-                category: "Dinner",
-                description: "Classic Italian pasta with rich meat sauce, perfect for family dinners and special occasions.",
-                prepTime: "15 min prep",
-                cookTime: "45 min cook",
-                servings: "4 people",
-                ingredients: [
-                    "400g spaghetti",
-                    "500g ground beef",
-                    "1 onion, finely chopped",
-                    "2 carrots, diced",
-                    "2 celery stalks, diced",
-                    "3 cloves garlic, minced",
-                    "800g canned tomatoes",
-                    "2 tbsp tomato paste",
-                    "1 cup beef broth",
-                    "1 tsp dried oregano",
-                    "1 tsp dried basil",
-                    "Salt and pepper to taste",
-                    "Olive oil for cooking",
-                    "Parmesan cheese for serving"
-                ],
-                instructions: [
-                    "Heat olive oil in a large pot over medium heat. Add onions, carrots, and celery. Cook until softened.",
-                    "Add garlic and cook for 1 minute until fragrant.",
-                    "Add ground beef and cook until browned, breaking it up with a spoon.",
-                    "Stir in tomato paste and cook for 2 minutes.",
-                    "Add canned tomatoes, beef broth, oregano, basil, salt, and pepper. Bring to a simmer.",
-                    "Reduce heat to low, cover, and cook for 30-40 minutes, stirring occasionally.",
-                    "Meanwhile, cook spaghetti according to package instructions.",
-                    "Serve sauce over spaghetti, topped with grated parmesan cheese."
-                ],
-                notes: "For a richer flavor, let the sauce simmer for longer. You can also add a splash of red wine to the sauce."
-            },
-            "cookies": {
-                title: "Chocolate Chip Cookies",
-                category: "Dessert",
-                description: "Soft and chewy cookies loaded with chocolate chips - the perfect sweet treat for any occasion.",
-                prepTime: "15 min prep",
-                cookTime: "10 min cook",
-                servings: "24 cookies",
-                ingredients: [
-                    "2 1/4 cups all-purpose flour",
-                    "1 tsp baking soda",
-                    "1 tsp salt",
-                    "1 cup unsalted butter, softened",
-                    "3/4 cup granulated sugar",
-                    "3/4 cup brown sugar",
-                    "2 large eggs",
-                    "2 tsp vanilla extract",
-                    "2 cups chocolate chips"
-                ],
-                instructions: [
-                    "Preheat oven to 375°F (190°C). Line baking sheets with parchment paper.",
-                    "In a small bowl, whisk together flour, baking soda, and salt.",
-                    "In a large bowl, beat butter, granulated sugar, and brown sugar until creamy.",
-                    "Add eggs one at a time, beating well after each addition. Beat in vanilla.",
-                    "Gradually beat in flour mixture. Stir in chocolate chips.",
-                    "Drop by rounded tablespoons onto baking sheets.",
-                    "Bake for 9-11 minutes until golden brown.",
-                    "Cool on baking sheets for 2 minutes; remove to wire racks to cool completely."
-                ],
-                notes: "For extra chewy cookies, chill the dough for at least 30 minutes before baking."
-            },
-            "avocado-toast": {
-                title: "Avocado Toast",
-                category: "Breakfast",
-                description: "Simple, nutritious breakfast with creamy avocado on toasted artisan bread with optional toppings.",
-                prepTime: "5 min prep",
-                cookTime: "5 min cook",
-                servings: "1-2 people",
-                ingredients: [
-                    "2 slices artisan bread",
-                    "1 ripe avocado",
-                    "1 tbsp lemon juice",
-                    "Salt and pepper to taste",
-                    "Red pepper flakes (optional)",
-                    "1 radish, thinly sliced (optional)",
-                    "Microgreens or sprouts (optional)",
-                    "Everything bagel seasoning (optional)"
-                ],
-                instructions: [
-                    "Toast bread until golden and crisp.",
-                    "Cut avocado in half, remove pit, and scoop flesh into a bowl.",
-                    "Add lemon juice, salt, and pepper. Mash with a fork until creamy but still slightly chunky.",
-                    "Spread avocado mixture evenly on toast.",
-                    "Top with radish slices, microgreens, and a sprinkle of red pepper flakes or everything bagel seasoning if desired.",
-                    "Serve immediately."
-                ],
-                notes: "For extra protein, top with a poached egg or sprinkle of feta cheese."
-            },
-            "stir-fry": {
-                title: "Vegetable Stir Fry",
-                category: "Vegetarian",
-                description: "Quick and healthy vegetable stir fry with a flavorful sauce, perfect for busy weeknights.",
-                prepTime: "15 min prep",
-                cookTime: "10 min cook",
-                servings: "4 people",
-                ingredients: [
-                    "2 tbsp vegetable oil",
-                    "1 onion, sliced",
-                    "2 bell peppers, sliced",
-                    "2 carrots, julienned",
-                    "1 cup broccoli florets",
-                    "1 cup snap peas",
-                    "3 cloves garlic, minced",
-                    "1 tbsp ginger, grated",
-                    "3 tbsp soy sauce",
-                    "1 tbsp hoisin sauce",
-                    "1 tsp sesame oil",
-                    "1 tsp cornstarch mixed with 2 tbsp water",
-                    "Sesame seeds for garnish",
-                    "Cooked rice for serving"
-                ],
-                instructions: [
-                    "Heat oil in a wok or large skillet over high heat.",
-                    "Add onions and stir-fry for 2 minutes.",
-                    "Add carrots and broccoli, stir-fry for 3 minutes.",
-                    "Add bell peppers and snap peas, stir-fry for 2 more minutes.",
-                    "Add garlic and ginger, stir-fry for 30 seconds until fragrant.",
-                    "In a small bowl, mix soy sauce, hoisin sauce, and sesame oil.",
-                    "Pour sauce over vegetables and toss to coat.",
-                    "Add cornstarch mixture and stir until sauce thickens.",
-                    "Remove from heat and sprinkle with sesame seeds.",
-                    "Serve immediately over rice."
-                ],
-                notes: "Feel free to substitute any vegetables you have on hand. Add tofu or tempeh for extra protein."
-            },
-            "smoothie": {
-                title: "Berry Smoothie Bowl",
-                category: "Breakfast",
-                description: "Refreshing and nutritious smoothie bowl topped with fresh fruits and crunchy granola.",
-                prepTime: "10 min prep",
-                cookTime: "0 min cook",
-                servings: "1-2 people",
-                ingredients: [
-                    "1 frozen banana",
-                    "1 cup frozen mixed berries",
-                    "1/2 cup almond milk",
-                    "1 tbsp honey or maple syrup",
-                    "1 tbsp chia seeds",
-                    "Toppings: fresh berries, sliced banana, granola, coconut flakes, chia seeds"
-                ],
-                instructions: [
-                    "In a blender, combine frozen banana, frozen berries, almond milk, honey, and chia seeds.",
-                    "Blend until smooth and creamy, adding more milk if needed to reach desired consistency.",
-                    "Pour into a bowl.",
-                    "Arrange toppings on the smoothie base.",
-                    "Serve immediately with a spoon."
-                ],
-                notes: "For a thicker consistency, use less liquid. For extra nutrition, add a handful of spinach or a scoop of protein powder."
-            }
-        };
-
         // Toggle recipe modal
         const modal = document.getElementById('recipeModal');
         const viewButtons = document.querySelectorAll('.view-recipe');
         const closeModal = document.querySelector('.close-modal');
         
         viewButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const recipeCard = e.target.closest('.recipe-card');
-                const recipeId = recipeCard.dataset.recipe;
-                loadRecipeIntoModal(recipeId);
+            button.addEventListener('click', () => {
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
         });
-        
-        function loadRecipeIntoModal(recipeId) {
-            const recipe = recipeData[recipeId];
-            if (!recipe) return;
-            
-            document.querySelector('.modal-header h3').textContent = recipe.title;
-            document.querySelector('.modal-category').textContent = recipe.category;
-            document.querySelector('.modal-description').textContent = recipe.description;
-            
-            document.querySelector('.modal-meta div:nth-child(1) span').textContent = `Prep Time: ${recipe.prepTime}`;
-            document.querySelector('.modal-meta div:nth-child(2) span').textContent = `Cook Time: ${recipe.cookTime}`;
-            document.querySelector('.modal-meta div:nth-child(3) span').textContent = `Servings: ${recipe.servings}`;
-            
-            // Update ingredients
-            const ingredientsList = document.querySelector('.ingredients-list');
-            ingredientsList.innerHTML = '';
-            recipe.ingredients.forEach(ingredient => {
-                const li = document.createElement('li');
-                li.textContent = ingredient;
-                ingredientsList.appendChild(li);
-            });
-            
-            // Update instructions
-            const instructionsList = document.querySelector('.instructions-list');
-            instructionsList.innerHTML = '';
-            recipe.instructions.forEach((instruction, index) => {
-                const li = document.createElement('li');
-                li.textContent = instruction;
-                instructionsList.appendChild(li);
-            });
-            
-            // Update notes
-            document.querySelector('.modal-section:last-child p').textContent = recipe.notes;
-        }
         
         closeModal.addEventListener('click', () => {
             modal.classList.remove('active');
@@ -1589,7 +1322,6 @@
         
         // Category tabs functionality
         const categoryTabs = document.querySelectorAll('.category-tab');
-        const recipeCards = document.querySelectorAll('.recipe-card');
         
         categoryTabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -1599,121 +1331,62 @@
                 // Add active class to clicked tab
                 tab.classList.add('active');
                 
-                const category = tab.dataset.category;
-                
-                // Filter recipes
-                recipeCards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                // Here would be code to filter recipes by category
+                // For this demo, we'll just simulate the action
+                console.log(`Showing recipes for: ${tab.dataset.category}`);
             });
         });
         
-        // Mobile menu functionality
+        // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-        const closeMenuBtn = document.querySelector('.close-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
+            alert('Mobile menu would open here. In a full implementation, this would show the navigation menu.');
+        });
+        
+        // Admin modal functionality
+        const adminModal = document.getElementById('adminModal');
+        const adminBtn = document.querySelector('.admin-btn');
+        const closeAdminModal = document.querySelector('.close-admin-modal');
+        
+        adminBtn.addEventListener('click', () => {
+            adminModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         });
         
-        closeMenuBtn.addEventListener('click', closeMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-        
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Admin modal functionality
-        const adminBtn = document.querySelectorAll('.admin-btn');
-        const adminModal = document.querySelector('.admin-modal');
-        const closeAdmin = document.querySelector('.close-admin');
-        
-        adminBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                adminModal.classList.add('active');
-                closeMobileMenu(); // Close mobile menu if open
-            });
-        });
-        
-        closeAdmin.addEventListener('click', () => {
+        closeAdminModal.addEventListener('click', () => {
             adminModal.classList.remove('active');
+            document.body.style.overflow = '';
         });
         
-        // Admin form submission
-        const adminForm = document.querySelector('.admin-form');
-        adminForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (username && password) {
-                alert(`Admin login successful! Welcome ${username}`);
+        window.addEventListener('click', (e) => {
+            if (e.target === adminModal) {
                 adminModal.classList.remove('active');
-                adminForm.reset();
-            } else {
-                alert('Please enter both username and password');
+                document.body.style.overflow = '';
             }
         });
         
-        // Newsletter form submission
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const emailInput = newsletterForm.querySelector('input[type="email"]');
-                if (emailInput.value) {
-                    alert('Thank you for subscribing to our newsletter!');
-                    emailInput.value = '';
-                }
-            });
-        }
-        
-        // Initialize recipe categories
-        recipeCards.forEach(card => {
-            const category = card.querySelector('.recipe-category').textContent.toLowerCase();
-            card.dataset.category = category;
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Animation for elements when they enter the viewport
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.recipe-card').forEach(card => {
-            observer.observe(card);
+        // Form submission handling
+        const loginForm = document.getElementById('adminLoginForm');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            // In a real application, this would send to a server
+            // For demo purposes, we'll just show an alert
+            alert(`Login attempt with:\nEmail: ${email}\nPassword: ${password}\n\nThis would authenticate with a server in a real application.`);
+            
+            // Reset form and close modal
+            loginForm.reset();
+            adminModal.classList.remove('active');
+            document.body.style.overflow = '';
         });
     </script>
 
-    <!-- Added the requested script -->
+    <!-- Added the requested scripts -->
+    <script type='text/javascript' src='//pl26920862.profitableratecpm.com/cb/a8/40/cba840d68e70db1debf5d3f4636121d5.js'></script>
     <script type='text/javascript' src='//pl26978641.profitableratecpm.com/ac/ae/4a/acae4ad92384de28ef866bcfd14cc222.js'></script>
 </body>
 </html>
